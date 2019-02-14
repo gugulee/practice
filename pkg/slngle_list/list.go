@@ -131,3 +131,26 @@ func (l *LinkList) Print() string {
 	}
 	return strings.Join(infoSlice, "->")
 }
+
+//reverse linked list
+func (l *LinkList) Reverse() {
+	if nil == l.head {
+		return
+	}
+
+	//only one or two nodes,return directly
+	node := l.head.Next
+	if nil == node || nil == node.Next {
+		return
+	}
+
+	var pre *ListNode = nil
+
+	for nil != node {
+		tmp := node.Next
+		node.Next = pre
+		pre = node
+		node = tmp
+	}
+	l.head.Next = pre
+}

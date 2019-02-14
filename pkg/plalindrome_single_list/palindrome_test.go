@@ -3,7 +3,7 @@ package plalindrome_single_list
 import (
 	"testing"
 
-	single "gotest/pkg/slngle_list"
+	single "github.com/practice/pkg/slngle_list"
 )
 
 func TestIsPlalindrome1(t *testing.T) {

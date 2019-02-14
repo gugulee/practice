@@ -3,8 +3,8 @@ package plalindrome_single_list
 import (
 	"strings"
 
-	single "gotest/pkg/slngle_list"
-	plalindrome "gotest/pkg/plalindrome_string"
+	single "github.com/practice/pkg/slngle_list"
+	plalindrome "github.com/practice/pkg/plalindrome_string"
 )
 
 /*

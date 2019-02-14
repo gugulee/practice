@@ -59,7 +59,7 @@ func TestInsetTail(t *testing.T) {
 		if test.want != out {
 			t.Errorf("err: LIST: %q,out=%q,want %q", test.sep, out, test.want)
 		}
-		t.Logf("info: LIST: %q,length=%d",test.sep,l.len)
+		t.Logf("info: LIST: %q,length=%d", test.sep, l.len)
 	}
 }
 
@@ -143,5 +143,17 @@ func TestPrint(t *testing.T) {
 		if test.want != out {
 			t.Errorf("LIST: %q,out=%q,want %q", test.sep, out, test.want)
 		}
+	}
+}
+
+func TestReverse(t *testing.T) {
+	tests := []struct {
+		sep  string
+		want string
+	}{
+		{sep: "a"},
+		{sep: "ab"},
+		{sep: "abc"},
+		{sep: "abcdef"},
 	}
 }
