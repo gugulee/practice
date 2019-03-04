@@ -1,10 +1,10 @@
-package plalindrome_single_list
+package single
 
 import (
 	"strings"
 
-	single "github.com/practice/pkg/slngle_list"
-	plalindrome "github.com/practice/pkg/plalindrome_string"
+	"github.com/practice/pkg/list/single"
+	plalindrome "github.com/practice/pkg/plalindrome/string"
 )
 
 /*

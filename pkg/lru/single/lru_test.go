@@ -1,4 +1,4 @@
-package lru_single_list
+package single
 
 import (
 	"testing"

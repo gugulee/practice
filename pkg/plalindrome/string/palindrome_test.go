@@ -1,4 +1,4 @@
-package plalindrome_string
+package string
 
 import "testing"
 

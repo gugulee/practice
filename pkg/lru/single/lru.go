@@ -1,7 +1,7 @@
-package lru_single_list
+package single
 
 import (
-	single "github.com/practice/pkg/slngle_list"
+	"github.com/practice/pkg/list/single"
 	"fmt"
 )
 

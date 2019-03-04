@@ -1,4 +1,4 @@
-package slngle_list
+package single
 
 import (
 	"testing"
@@ -146,14 +146,14 @@ func TestPrint(t *testing.T) {
 	}
 }
 
-func TestReverse(t *testing.T) {
-	tests := []struct {
-		sep  string
-		want string
-	}{
-		{sep: "a"},
-		{sep: "ab"},
-		{sep: "abc"},
-		{sep: "abcdef"},
-	}
-}
+//func TestReverse(t *testing.T) {
+//	tests := []struct {
+//		sep  string
+//		want string
+//	}{
+//		{sep: "a"},
+//		{sep: "ab"},
+//		{sep: "abc"},
+//		{sep: "abcdef"},
+//	}
+//}

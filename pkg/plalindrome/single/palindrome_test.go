@@ -1,9 +1,9 @@
-package plalindrome_single_list
+package single
 
 import (
 	"testing"
 
-	single "github.com/practice/pkg/slngle_list"
+	"github.com/practice/pkg/list/single"
 )
 
 func TestIsPlalindrome1(t *testing.T) {
@@ -33,7 +33,6 @@ func TestIsPlalindrome1(t *testing.T) {
 		}
 	}
 }
-
 
 func TestIsPlalindrome2(t *testing.T) {
 	tests := []struct {

@@ -1,4 +1,4 @@
-package plalindrome_string
+package string
 
 func IsPlalindrome1(str string) bool {
 	length := len(str)

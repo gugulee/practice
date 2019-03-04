@@ -1,4 +1,4 @@
-package etcd_test
+package main
 
 import (
 	"crypto/tls"

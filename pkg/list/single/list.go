@@ -1,4 +1,4 @@
-package slngle_list
+package single
 
 import (
 	"strings"
