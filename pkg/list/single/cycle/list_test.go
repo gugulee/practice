@@ -1,11 +1,9 @@
-package single
+package cycle
 
 import (
+	"github.com/stretchr/testify/require"
 	"strings"
 	"testing"
-
-	//"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 )
 
 func reverse(s []string) {
@@ -60,6 +58,7 @@ func TestInsetTail(t *testing.T) {
 			l.InsertTail(string(str))
 		}
 		out := l.Print()
+
 		if test.want != out {
 			t.Errorf("err: LIST: %q,out=%q,want %q", test.sep, out, test.want)
 		}
@@ -81,15 +80,15 @@ func TestSearchListBynode(t *testing.T) {
 		{sep: "a"},
 		{sep: "c"},
 	}
-
 	for _, test := range tests {
-		if ! strings.Contains(strs, test.sep) {
-			continue
+		out := l.SearchListByValue(test.sep)
+		if nil == out {
+			if strings.Contains(strs, test.sep) {
+				require.NotNilf(t, out, "LIST: %q, %q should be found", strs, test.sep)
+				continue
+			}
+			t.Logf("LIST: %q,can not find %q", strs, test.sep)
 		}
-		node := l.SearchListByValue(test.sep)
-		require.NotNilf(t, node, "LIST: %q, %q should be found", strs, test.sep)
-		out := l.SearchListByNode(node)
-		require.Truef(t, out, "LIST: %q, %q should be found", strs, test.sep)
 	}
 }
 
@@ -121,35 +120,6 @@ func TestSearchListByValue(t *testing.T) {
 	}
 }
 
-func TestDeleteNodeByValue(t *testing.T) {
-	l := NewLinkList()
-	strs := "hello"
-	for _, str := range strs {
-		l.InsertTail(string(str))
-	}
-
-	tests := []struct {
-		sep string
-	}{
-		{sep: "o"},
-		{sep: "l"},
-		{sep: "l"},
-		{sep: "a"},
-		{sep: "e"},
-		{sep: "h"},
-	}
-	for _, test := range tests {
-		out := l.DeleteNodeByValue(test.sep)
-		if !out {
-			if strings.Contains(strs, test.sep) {
-				t.Errorf("err: LIST: %q,delete %q failed", strs, test.sep)
-				continue
-			}
-			t.Logf("LIST: %q,delete %q failed", strs, test.sep)
-		}
-	}
-}
-
 func TestPrint(t *testing.T) {
 	tests := []struct {
 		sep  string
@@ -174,33 +144,5 @@ func TestPrint(t *testing.T) {
 		if test.want != out {
 			t.Errorf("LIST: %q,out=%q,want %q", test.sep, out, test.want)
 		}
-	}
-}
-
-func TestReverse(t *testing.T) {
-	tests := []struct {
-		sep  string
-		want string
-	}{
-		{sep: "a"},
-		{sep: "ab"},
-		{sep: "abc"},
-		{sep: "abcdef"},
-	}
-
-	for _, test := range tests {
-		var want []string
-		for _, s := range test.sep {
-			want = append(want, string(s))
-		}
-		reverse(want)
-		test.want = strings.Join(want, "->")
-
-		l := NewLinkList()
-		for _, str := range test.sep {
-			l.InsertTail(string(str))
-		}
-		l.Reverse()
-		require.Equal(t, test.want, l.Print())
 	}
 }

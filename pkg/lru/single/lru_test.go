@@ -22,6 +22,7 @@ func TestLruCache(t *testing.T) {
 		{"hello", "o->l->e->h", 5},
 		{"hello", "o->l->e", 3},
 		{"lhelo", "o->l->e", 3},
+		{"lhleo", "o->e->l", 3},
 		{"lhelo", "o->l", 2},
 		{"aaaaaabbbbbbbbb", "b->a", 10},
 	}

@@ -1,12 +1,12 @@
 package single
 
 import (
-	"strings"
+	"fmt"
 )
 
 type ListNode struct {
 	Next  *ListNode
-	Value string
+	value interface{}
 }
 
 type LinkList struct {
@@ -15,13 +15,13 @@ type LinkList struct {
 }
 
 //创建新node
-func NewNode(value string) *ListNode {
-	return &ListNode{Value: value}
+func NewNode(value interface{}) *ListNode {
+	return &ListNode{value: value}
 }
 
 //创建链表头
 func NewLinkList() *LinkList {
-	return &LinkList{NewNode(""), 0}
+	return &LinkList{NewNode(nil), 0}
 }
 
 func (l *LinkList) Length() uint32 {
@@ -30,6 +30,10 @@ func (l *LinkList) Length() uint32 {
 
 func (l *LinkList) Head() *ListNode {
 	return l.head
+}
+
+func (n *ListNode) Value() interface{} {
+	return n.value
 }
 
 //在链表尾部插入新节点
@@ -57,7 +61,7 @@ func (l *LinkList) InsertAfter(node *ListNode, value string) {
 }
 
 //判断node是否在链表中，存在返回true，否则返回false
-func (l *LinkList) SearchListBynode(target *ListNode) bool {
+func (l *LinkList) SearchListByNode(target *ListNode) bool {
 	if nil == target {
 		return false
 	}
@@ -74,7 +78,7 @@ func (l *LinkList) SearchListBynode(target *ListNode) bool {
 func (l *LinkList) SearchListByValue(value string) *ListNode {
 	next := l.head.Next
 	for ; next != nil; next = next.Next {
-		if next.Value == value {
+		if next.value == value {
 			return next
 		}
 	}
@@ -111,7 +115,7 @@ func (l *LinkList) DeleteNodeByValue(value string) bool {
 	node := l.head.Next
 	pre := l.head
 	for ; nil != node; node = node.Next {
-		if node.Value == value {
+		if node.value == value {
 			pre.Next = node.Next
 			node = nil
 			l.len--
@@ -125,11 +129,14 @@ func (l *LinkList) DeleteNodeByValue(value string) bool {
 
 func (l *LinkList) Print() string {
 	next := l.head.Next
-	infoSlice := []string{}
+	info := ""
 	for ; next != nil; next = next.Next {
-		infoSlice = append(infoSlice, next.Value)
+		info += fmt.Sprintf("%+v", next.value)
+		if nil != next.Next {
+			info += "->"
+		}
 	}
-	return strings.Join(infoSlice, "->")
+	return info
 }
 
 //reverse linked list
@@ -138,9 +145,9 @@ func (l *LinkList) Reverse() {
 		return
 	}
 
-	//only one or two nodes,return directly
 	node := l.head.Next
-	if nil == node || nil == node.Next {
+	// one node at least except for head
+	if nil == node {
 		return
 	}
 
@@ -152,5 +159,6 @@ func (l *LinkList) Reverse() {
 		pre = node
 		node = tmp
 	}
+
 	l.head.Next = pre
 }

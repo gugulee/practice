@@ -1,8 +1,8 @@
 package single
 
 import (
-	"github.com/practice/pkg/list/single"
 	"fmt"
+	"github.com/practice/pkg/list/single"
 )
 
 type LruSingle struct {
@@ -27,10 +27,10 @@ here's my way of thinking about lru: maintain an ordered single list(the list is
 we traverse the list sequentially from the list header,When new data come.
 There are some conditions,as follows:
 1.If the data does not exist in the list, there are two cases:
-(1)If the list is not full, data insert the new data into the list header
+(1)If the list is not full, insert the new data into the list header
 (2)If the list is full, delete the tail node and insert the new data into the list header
-2.If the data exists in the list, delete the node and insert into the list header
- */
+2.If the data exists in the list, delete the node correspond with the data and insert into the list header
+*/
 func (lru *LruSingle) LruCache(value string) (bool, error) {
 	list := lru.lru
 	if nil == list {
@@ -42,6 +42,7 @@ func (lru *LruSingle) LruCache(value string) (bool, error) {
 	}
 
 	node := list.SearchListByValue(value)
+	// node is nil means that not find value
 	if nil == node {
 		if list.Length() == lru.length {
 			node = list.Head()
@@ -52,7 +53,7 @@ func (lru *LruSingle) LruCache(value string) (bool, error) {
 	}
 
 	if nil != node && ! list.DeleteNode(node) {
-		return false, fmt.Errorf("delete the tail:%q failed", node.Value)
+		return false, fmt.Errorf("delete the tail:%s failed", node.Value().(string))
 	}
 
 	list.InsertHead(value)
