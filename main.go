@@ -1,11 +1,14 @@
 package main
 
-import (
-	"fmt"
-	"math"
-)
+import "fmt"
 
 func main() {
-	delta := math.Abs(0.945454646/1-1)
-	fmt.Println(delta)
+	a := []int{7, 6, 2, 4, 1, 9, 3, 8, 0}
+	for i := 0; i < len(a); {
+		if a[i] < 10 {
+			fmt.Println(a)
+			a = a[1:]
+		}
+
+	}
 }
