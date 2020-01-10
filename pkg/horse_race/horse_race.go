@@ -9,9 +9,9 @@ type horseTime float64
 
 var (
 	// the time of every horse of q
-	qHorseTime = map[string]horseTime{"q1": 1.0, "q2": 2.0, "q3": 3.0,}
+	qHorseTime = map[string]horseTime{"q1": 1.0, "q2": 2.0, "q3": 3.0}
 	// the time of every horse of t
-	tHorseTime  = map[string]horseTime{"t1": 1.5, "t2": 2.5, "t3": 3.5,}
+	tHorseTime  = map[string]horseTime{"t1": 1.5, "t2": 2.5, "t3": 3.5}
 	qHorseOrder = []string{"q1", "q2", "q3"} // the horse order of q
 )
 

@@ -44,11 +44,34 @@ func TestMergeSort(t *testing.T) {
 	in = []int{7, 6, 2, 4, 1, 9, 3, 8, 0, 5}
 	out = MergeSort(in)
 	assert.Equal(t, []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}, out)
+
 	in = []int{7, 6, 2, 3, 1, 9, 3, 8, 0, 5}
 	out = MergeSort(in)
 	assert.Equal(t, []int{0, 1, 2, 3, 3, 5, 6, 7, 8, 9}, out)
 
 	in = []int{3434, 3356, 67, 12334, 878667, 387}
 	out = MergeSort(in)
+	assert.Equal(t, []int{67, 387, 3356, 3434, 12334, 878667}, out)
+}
+
+func TestMergeSort1(t *testing.T) {
+	in := []int{}
+	out := MergeSort1(in)
+	assert.Nil(t, out)
+
+	in = []int{7}
+	out = MergeSort1(in)
+	assert.Equal(t, in, out)
+
+	in = []int{7, 6, 2, 4, 1, 9, 3, 8, 0, 5}
+	out = MergeSort1(in)
+	assert.Equal(t, []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}, out)
+
+	in = []int{7, 6, 2, 3, 1, 9, 3, 8, 0, 5}
+	out = MergeSort1(in)
+	assert.Equal(t, []int{0, 1, 2, 3, 3, 5, 6, 7, 8, 9}, out)
+
+	in = []int{3434, 3356, 67, 12334, 878667, 387}
+	out = MergeSort1(in)
 	assert.Equal(t, []int{67, 387, 3356, 3434, 12334, 878667}, out)
 }

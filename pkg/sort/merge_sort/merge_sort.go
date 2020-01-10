@@ -41,3 +41,32 @@ func MergeSort(original []int) []int {
 	right := MergeSort(original[length/2:])
 	return merge(left, right)
 }
+
+func MergeSort1(original []int) []int {
+	if 0 == len(original) {
+		return nil
+	}
+
+	var r []int
+	// push original
+	var stack [][]int
+	stack = append(stack, original)
+
+	for len(stack) > 0 {
+		// pop
+		current := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+
+		// if only one in current, merge it to result
+		if 1 == len(current) {
+			r = merge(r, current)
+			continue
+		}
+
+		// push
+		length := len(current)
+		stack = append(stack, current[length/2:])
+		stack = append(stack, current[0:length/2])
+	}
+	return r
+}
