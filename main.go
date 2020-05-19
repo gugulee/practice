@@ -1,9 +1,10 @@
 package main
 
-import (
-	_ "gopkg.in/yaml.v2"
-)
+import "fmt"
 
 func main() {
+	a := interface{}("1")
+	b := interface{}("1")
+	fmt.Println(a == b)
 
 }

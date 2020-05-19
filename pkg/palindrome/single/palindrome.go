@@ -4,7 +4,7 @@ import (
 	"strings"
 
 	"github.com/practice/pkg/list/single"
-	plalindrome "github.com/practice/pkg/plalindrome/string"
+	plalindrome "github.com/practice/pkg/palindrome/string"
 )
 
 /*
@@ -17,14 +17,15 @@ func IsPalindrome1(l *single.LinkList) bool {
 	}
 
 	var slice []string
-	node := l.Head().Next
+	node := l.Head().Next()
 
 	if nil == node {
 		return false
 	}
 
-	for ; node != nil; node = node.Next {
+	for ; node != nil; {
 		slice = append(slice, node.Value().(string))
+		node = node.Next()
 	}
 
 	return plalindrome.IsPlalindrome1(strings.Join(slice, ""))
@@ -38,7 +39,7 @@ func IsPalindrome2(l *single.LinkList) bool {
 		return false
 	}
 
-	node := l.Head().Next
+	node := l.Head().Next()
 	length := l.Length()
 	s := make([]string, 0, length/2)
 	if nil == node {
@@ -47,19 +48,19 @@ func IsPalindrome2(l *single.LinkList) bool {
 
 	for i := uint32(1); i <= length/2; i++ {
 		s = append(s, node.Value().(string))
-		node = node.Next
+		node = node.Next()
 	}
 
 	//if len is odd number,ignore the middle number
 	if length%2 != 0 {
-		node = node.Next
+		node = node.Next()
 	}
 
 	for i := int32(length/2 - 1); i >= 0; i-- {
 		if s[i] != node.Value() {
 			return false
 		}
-		node = node.Next
+		node = node.Next()
 	}
 
 	return true
@@ -74,39 +75,43 @@ func IsPalindrome3(l *single.LinkList) bool {
 		return false
 	}
 	isPalindrome := true
-	node := l.Head().Next
+	node := l.Head().PNext()
 	length := l.Length()
 	var pre *single.ListNode = nil
 
-	if nil == node {
+	if nil == *node {
 		return false
 	}
 
+	// reversr the first half part
 	for i := uint32(1); i <= length/2; i++ {
-		tmp := node.Next
-		node.Next = pre
-		pre = node
-		node = tmp
+		tmp := *((*node).PNext())
+		pNext := (*node).PNext()
+		*pNext = pre
+		pre = *node
+		*node = tmp
 	}
 
-	left, right := pre, node
+	// if the node of list is odd, skip the middle node
+	left, right := pre, *node
 	if length%2 != 0 {
-		right = right.Next
+		right = *((*right).PNext())
 	}
 
 	for nil != left && nil != right {
-		if left.Value() != right.Value() {
+		if left.Value() != (*right).Value() {
 			isPalindrome = false
 			break
 		}
-		left = left.Next
-		right = right.Next
+		left = *((*left).PNext())
+		right = *((*right).PNext())
 	}
 
 	for nil != pre {
-		tmp := pre.Next
-		pre.Next = node
-		node = pre
+		tmp := *(pre.PNext())
+		pNext := pre.PNext()
+		*pNext = *node
+		*node = pre
 		pre = tmp
 	}
 

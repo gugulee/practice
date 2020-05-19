@@ -57,11 +57,12 @@ func TestIsPlalindrome2(t *testing.T) {
 			if "" == test.sep {
 				test.sep = "nil"
 			}
-			t.Errorf("err: IsPlalindrome1(LIST:%q) out=%t,want=%t", test.sep, out, test.want)
+			t.Errorf("err: IsPlalindrome2(LIST:%q) out=%t,want=%t", test.sep, out, test.want)
 		}
 	}
 }
 
+// todo:
 func TestIsPlalindrome3(t *testing.T) {
 	tests := []struct {
 		sep  string
@@ -69,7 +70,7 @@ func TestIsPlalindrome3(t *testing.T) {
 	}{
 		{"", false},
 		{"a", true},
-		{"hello", false},
+		{"healo", false},
 		{"abccba", true},
 		{"abcdcba", true},
 	}
@@ -85,7 +86,7 @@ func TestIsPlalindrome3(t *testing.T) {
 			if "" == test.sep {
 				test.sep = "nil"
 			}
-			t.Errorf("err: IsPlalindrome1(LIST:%q) out=%t,want=%t", test.sep, out, test.want)
+			t.Errorf("err: IsPlalindrome3(LIST:%q) out=%t,want=%t", test.sep, out, test.want)
 		}
 	}
 }
