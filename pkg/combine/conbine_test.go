@@ -1,4 +1,4 @@
-package conbine
+package combine
 
 import (
 	"fmt"
@@ -6,8 +6,8 @@ import (
 )
 
 func TestCombine(t *testing.T) {
-	in := []string{"t1", "t2", "t3", "t4"}
-	combine(in, []string{}, 2)
+	in := []string{"t1", "t2", "t3", "t4", "t5", "t6"}
+	combine(in, []string{}, 3)
 
 	fmt.Println("---------------------")
 

@@ -2,6 +2,7 @@ package single
 
 import (
 	"fmt"
+
 	"github.com/practice/pkg/list/single"
 )
 
@@ -46,13 +47,13 @@ func (lru *LruSingle) LruCache(value string) (bool, error) {
 	if nil == node {
 		if list.Length() == lru.length {
 			node = list.Head()
-			for ; nil != node.Next; node = node.Next {
+			for ; nil != node.Next(); node = node.Next() {
 
 			}
 		}
 	}
 
-	if nil != node && ! list.DeleteNode(node) {
+	if nil != node && !list.DeleteNode(node) {
 		return false, fmt.Errorf("delete the tail:%s failed", node.Value().(string))
 	}
 

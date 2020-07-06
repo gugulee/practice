@@ -17,13 +17,12 @@ func TestPush(t *testing.T) {
 		s.Push(v)
 	}
 
-	require.Equal(t, "0->1->2->3->4->5->6", s.data.Print())
-	require.Equal(t, 7, s.top)
+	require.Equal(t, "6->5->4->3->2->1->0", s.data.Print())
+	require.Equal(t, s.data.SearchListByValue(6), s.top)
 }
 
-
 func TestPrint(t *testing.T) {
-	s := NewStack(5)
+	s := NewStack()
 	for _, v := range []int{0, 1, 2, 3, 4, 5, 6} {
 		s.Push(v)
 	}
@@ -32,51 +31,59 @@ func TestPrint(t *testing.T) {
 
 	require.Equal(t, []interface{}{6, 5, 4, 3, 2, 1, 0}, out)
 
-	s = NewStack(5)
+	s = NewStack()
 	out = s.Print()
 	require.Equal(t, []interface{}{}, out)
 }
-/*
+
 func TestPop(t *testing.T) {
-	s := NewStack(5)
+	s := NewStack()
 	for _, v := range []int{0, 1, 2, 3, 4, 5, 6} {
 		s.Push(v)
 	}
 
 	out := s.Pop()
 	require.Equal(t, interface{}(6), out)
-	require.Equal(t, []interface{}{0, 1, 2, 3, 4, 5}, s.data[0:s.top+1])
+	require.Equal(t, "5->4->3->2->1->0", s.data.Print())
+	require.Equal(t, s.data.SearchListByValue(5), s.top)
 
 	out = s.Pop()
 	require.Equal(t, interface{}(5), out)
-	require.Equal(t, []interface{}{0, 1, 2, 3, 4}, s.data[0:s.top+1])
+	require.Equal(t, "4->3->2->1->0", s.data.Print())
+	require.Equal(t, s.data.SearchListByValue(4), s.top)
 
 	out = s.Pop()
 	require.Equal(t, interface{}(4), out)
-	require.Equal(t, []interface{}{0, 1, 2, 3}, s.data[0:s.top+1])
+	require.Equal(t, "3->2->1->0", s.data.Print())
+	require.Equal(t, s.data.SearchListByValue(3), s.top)
 
 	out = s.Pop()
 	require.Equal(t, interface{}(3), out)
-	require.Equal(t, []interface{}{0, 1, 2}, s.data[0:s.top+1])
+	require.Equal(t, "2->1->0", s.data.Print())
+	require.Equal(t, s.data.SearchListByValue(2), s.top)
 
 	out = s.Pop()
 	require.Equal(t, interface{}(2), out)
-	require.Equal(t, []interface{}{0, 1}, s.data[0:s.top+1])
+	require.Equal(t, "1->0", s.data.Print())
+	require.Equal(t, s.data.SearchListByValue(1), s.top)
 
 	out = s.Pop()
 	require.Equal(t, interface{}(1), out)
-	require.Equal(t, []interface{}{0}, s.data[0:s.top+1])
+	require.Equal(t, "0", s.data.Print())
+	require.Equal(t, s.data.SearchListByValue(0), s.top)
 
 	out = s.Pop()
 	require.Equal(t, interface{}(0), out)
-	require.Equal(t, []interface{}{}, s.data[0:s.top+1])
+	require.Equal(t, nil, s.data.Print())
+	require.Equal(t, nil, s.top)
 
 	out = s.Pop()
 	require.Equal(t, nil, out)
-	require.Equal(t, -1, s.top)
+	require.Equal(t, nil, s.data.Print())
+	require.Equal(t, nil, s.top)
 
 	out = s.Pop()
 	require.Equal(t, nil, out)
-	require.Equal(t, -1, s.top)
+	require.Equal(t, nil, s.data.Print())
+	require.Equal(t, nil, s.top)
 }
-*/

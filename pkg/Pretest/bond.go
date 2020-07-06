@@ -1,8 +1,9 @@
 package main
 
 import (
-	"fmt"
 	"encoding/json"
+	"fmt"
+
 	"github.com/vishvananda/netlink"
 )
 

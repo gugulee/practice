@@ -4,34 +4,52 @@ import (
 	"fmt"
 )
 
+// ListNode is the node of the list
 type ListNode struct {
 	next  *ListNode
 	value interface{}
 }
 
+// LinkList ...
 type LinkList struct {
 	head *ListNode
 	len  uint32
 }
 
-//创建新node
+// NewNode ...
 func NewNode(value interface{}) *ListNode {
 	return &ListNode{value: value}
 }
 
-//创建链表头
+// NewLinkList ...
 func NewLinkList() *LinkList {
 	return &LinkList{NewNode(nil), 0}
 }
 
+// Length return the length of the list
 func (l *LinkList) Length() uint32 {
 	return l.len
 }
 
+// Head return the first node
 func (l *LinkList) Head() *ListNode {
 	return l.head
 }
 
+// Tail return the last node
+func (l *LinkList) Tail() *ListNode {
+	if nil == l.head.next {
+		return nil
+	}
+
+	node := l.head
+	for ; nil != node.next; node = node.next {
+
+	}
+	return node
+}
+
+// Value return the value of the node
 func (n *ListNode) Value() interface{} {
 	if nil == n {
 		return nil
@@ -39,6 +57,7 @@ func (n *ListNode) Value() interface{} {
 	return n.value
 }
 
+// PNext return the the secondary pointer of the next node
 func (n *ListNode) PNext() **ListNode {
 	if nil == n {
 		return nil
@@ -46,6 +65,7 @@ func (n *ListNode) PNext() **ListNode {
 	return &n.next
 }
 
+// Next return the the pointer of the next node
 func (n *ListNode) Next() *ListNode {
 	if nil == n {
 		return nil
@@ -53,7 +73,19 @@ func (n *ListNode) Next() *ListNode {
 	return n.next
 }
 
-//在链表尾部插入新节点
+// Swap swap node and node.next
+func (l *LinkList) Swap(prev, node *ListNode) {
+	next := node.next
+
+	// delete node from list
+	prev.next = next
+
+	// insert node after next
+	node.next = next.next
+	next.next = node
+}
+
+// InsertTail insert the new node in the tail of the list
 func (l *LinkList) InsertTail(value interface{}) {
 	node := l.head
 	for ; nil != node.next; node = node.next {
@@ -62,13 +94,13 @@ func (l *LinkList) InsertTail(value interface{}) {
 	l.InsertAfter(node, value)
 }
 
-//在链表头后面插入新节点
+// InsertHead insert the new node in the head of the list
 func (l *LinkList) InsertHead(value interface{}) {
 	node := l.head
 	l.InsertAfter(node, value)
 }
 
-//在node后面插入新节点
+// InsertAfter insert the new node after node
 func (l *LinkList) InsertAfter(node *ListNode, value interface{}) {
 	newNode := NewNode(value)
 
@@ -77,7 +109,7 @@ func (l *LinkList) InsertAfter(node *ListNode, value interface{}) {
 	l.len++
 }
 
-//判断node是否在链表中，存在返回true，否则返回false
+// SearchListByNode ...
 func (l *LinkList) SearchListByNode(target *ListNode) bool {
 	if nil == target {
 		return false
@@ -91,7 +123,7 @@ func (l *LinkList) SearchListByNode(target *ListNode) bool {
 	return false
 }
 
-//根据value查找是否存在链表中，返回该node，否则返回nil
+// SearchListByValue ...
 func (l *LinkList) SearchListByValue(value interface{}) *ListNode {
 	next := l.head.next
 	for ; next != nil; next = next.next {
@@ -102,7 +134,7 @@ func (l *LinkList) SearchListByValue(value interface{}) *ListNode {
 	return nil
 }
 
-//删除node
+// DeleteNode delete the specified node
 func (l *LinkList) DeleteNode(target *ListNode) bool {
 	if nil == target {
 		return false
@@ -126,7 +158,7 @@ func (l *LinkList) DeleteNode(target *ListNode) bool {
 	return true
 }
 
-//根据value删除node
+// DeleteNodeByValue delete the node which is the specified value
 func (l *LinkList) DeleteNodeByValue(value string) bool {
 	node := l.head.next
 	pre := l.head
@@ -143,6 +175,7 @@ func (l *LinkList) DeleteNodeByValue(value string) bool {
 	return false
 }
 
+// Print print the list
 func (l *LinkList) Print() string {
 	next := l.head.next
 	info := ""
@@ -155,7 +188,7 @@ func (l *LinkList) Print() string {
 	return info
 }
 
-//reverse linked list
+// Reverse reverse linked list
 func (l *LinkList) Reverse() {
 	// two node at least only need reverse, except for head
 	// nil == l.head.next represent no node, except for head
@@ -200,7 +233,7 @@ func (l *LinkList) HasCycle1() bool {
 	return false
 }
 
-// HasCycle1 detect if list has cycle
+// HasCycle2 detect if list has cycle
 func (l *LinkList) HasCycle2() bool {
 	// nil == l.head.next represent no node except for head, it has no cycle
 	if nil == l.head.next {
@@ -322,17 +355,4 @@ func (l *LinkList) FindMiddleNode() *ListNode {
 	}
 
 	return slow
-}
-
-// Tail return the last node
-func (l *LinkList) Tail() *ListNode {
-	if nil == l.head.next {
-		return nil
-	}
-
-	node := l.head
-	for ; nil != node.next; node = node.next {
-
-	}
-	return node
 }

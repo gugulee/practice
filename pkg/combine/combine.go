@@ -1,4 +1,4 @@
-package conbine
+package combine
 
 import "fmt"
 

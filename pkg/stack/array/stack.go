@@ -7,9 +7,9 @@ type Stack struct {
 	top int
 }
 
-func NewStack(length int) *Stack {
+func New() *Stack {
 	return &Stack{
-		data: make([]interface{}, length),
+		data: make([]interface{}, 10),
 		top:  -1,
 	}
 }
@@ -53,4 +53,11 @@ func (s *Stack) Print() []interface{} {
 
 func (s *Stack) Flush() {
 	s.top = -1
+}
+
+func (s *Stack) Top() interface{} {
+	if s.IsEmpty() {
+		return nil
+	}
+	return s.data[s.top]
 }

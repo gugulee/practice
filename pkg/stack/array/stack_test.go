@@ -1,28 +1,29 @@
 package array
 
 import (
-	"github.com/stretchr/testify/require"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 func TestIsEmpty(t *testing.T) {
-	s := NewStack(10)
+	s := New()
 	out := s.IsEmpty()
 	require.Equal(t, true, out)
 }
 
 func TestPush(t *testing.T) {
-	s := NewStack(5)
+	s := New()
 	for _, v := range []int{0, 1, 2, 3, 4, 5, 6} {
 		s.Push(v)
 	}
 
-	require.Equal(t, []interface{}{0, 1, 2, 3, 4, 5, 6}, s.data)
+	require.Equal(t, []interface{}{6, 5, 4, 3, 2, 1, 0}, s.Print())
 	require.Equal(t, 6, s.top)
 }
 
 func TestPrint(t *testing.T) {
-	s := NewStack(5)
+	s := New()
 	for _, v := range []int{0, 1, 2, 3, 4, 5, 6} {
 		s.Push(v)
 	}
@@ -31,13 +32,13 @@ func TestPrint(t *testing.T) {
 
 	require.Equal(t, []interface{}{6, 5, 4, 3, 2, 1, 0}, out)
 
-	s = NewStack(5)
+	s = New()
 	out = s.Print()
 	require.Equal(t, []interface{}{}, out)
 }
 
 func TestPop(t *testing.T) {
-	s := NewStack(5)
+	s := New()
 	for _, v := range []int{0, 1, 2, 3, 4, 5, 6} {
 		s.Push(v)
 	}
@@ -77,4 +78,15 @@ func TestPop(t *testing.T) {
 	out = s.Pop()
 	require.Equal(t, nil, out)
 	require.Equal(t, -1, s.top)
+}
+
+func TestTop(t *testing.T) {
+	s := New()
+	require.Equal(t, nil, s.Top())
+
+	for _, v := range []int{0, 1, 2, 3, 4, 5, 6} {
+		s.Push(v)
+	}
+
+	require.Equal(t, 6, s.Top())
 }

@@ -85,7 +85,7 @@ func TestSearchListBynode(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		if ! strings.Contains(strs, test.sep) {
+		if !strings.Contains(strs, test.sep) {
 			continue
 		}
 		node := l.SearchListByValue(test.sep)
@@ -116,12 +116,35 @@ func TestSearchListByValue(t *testing.T) {
 
 	for _, test := range tests {
 		node := l.SearchListByValue(test.sep)
-		if ! strings.Contains(strs, test.sep) {
+		if !strings.Contains(strs, test.sep) {
 			require.Nil(t, node)
 			continue
 		}
 		require.NotNilf(t, node, "LIST: %q, %q should be found", strs, test.sep)
 	}
+}
+
+func TestSwap(t *testing.T) {
+	l := NewLinkList()
+	strs := "6415273"
+
+	for _, str := range strs {
+		l.InsertTail(string(str))
+	}
+
+	require.Equal(t, "6->4->1->5->2->7->3", l.Print())
+
+	l.Swap(l.head, l.head.next)
+	require.Equal(t, "4->6->1->5->2->7->3", l.Print())
+
+	node := l.head
+	for ; nil != node.next.next.next; node = node.next {
+
+	}
+	require.Equal(t, "2", node.value)
+
+	l.Swap(node, node.next)
+	require.Equal(t, "4->6->1->5->2->3->7", l.Print())
 }
 
 func TestDeleteNodeByValue(t *testing.T) {
@@ -145,7 +168,7 @@ func TestDeleteNodeByValue(t *testing.T) {
 		out := l.DeleteNodeByValue(test.sep)
 		if strings.Contains(strs, test.sep) {
 			require.Equal(t, true, out)
-		}else {
+		} else {
 			require.Equal(t, false, out)
 		}
 	}
