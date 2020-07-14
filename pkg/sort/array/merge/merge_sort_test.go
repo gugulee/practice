@@ -48,6 +48,28 @@ func TestMerge1(t *testing.T) {
 	require.Equal(t, []int{1, 4, 5, 6, 9, 13, 2}, in)
 }
 
+func TestMerge3(t *testing.T) {
+	in := []int{3, 8, 11, 1, 7, 9}
+	merge3(in, 0, 2, 5)
+	require.Equal(t, []int{1, 3, 7, 8, 9, 11}, in)
+
+	in = []int{1, 2, 8, 3, 7}
+	merge3(in, 0, 2, 4)
+	require.Equal(t, []int{1, 2, 3, 7, 8}, in)
+
+	in = []int{4, 7, 1, 2, 3}
+	merge3(in, 0, 1, 4)
+	require.Equal(t, []int{1, 2, 3, 4, 7}, in)
+
+	in = []int{100, 4, 9, 13, 5, 6, 20}
+	merge3(in, 1, 3, 6)
+	require.Equal(t, []int{100, 4, 5, 6, 9, 13, 20}, in)
+
+	in = []int{1, 4, 9, 13, 5, 6, 2}
+	merge3(in, 0, 3, 5)
+	require.Equal(t, []int{1, 4, 5, 6, 9, 13, 2}, in)
+}
+
 func TestMergeSort(t *testing.T) {
 	in := []int{}
 	out := MergeSort(in)

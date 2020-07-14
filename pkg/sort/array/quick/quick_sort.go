@@ -1,5 +1,10 @@
 package quick
 
+// Sort ...
+func Sort(original []int) {
+	quickSort(original, 0, len(original)-1)
+}
+
 // a[:i] is the processed area where is less then pivot,
 // a[j:] is the unprocessed area
 func partition(a []int, start, end int) int {
@@ -24,7 +29,7 @@ func quickSort(original []int, start, end int) {
 		return
 	}
 
-	pivot := partition(original, start, end)
-	quickSort(original, start, pivot-1)
-	quickSort(original, pivot+1, end)
+	p := partition(original, start, end)
+	quickSort(original, start, p-1)
+	quickSort(original, p+1, end)
 }

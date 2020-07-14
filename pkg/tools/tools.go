@@ -15,6 +15,12 @@ func FuncTime() func() {
 	}
 }
 
+func FuncTime1(f func(), name string) {
+	t1 := time.Now() // get current time
+	f()
+	fmt.Printf("function %s elapsed: %v\n", name, time.Since(t1))
+}
+
 func Remove(slice []int, index int) []int {
 	copy(slice[index:], slice[index+1:])
 	return slice[:len(slice)-1]

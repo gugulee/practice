@@ -91,6 +91,31 @@ func merge2(original []int, start, mid, end int) {
 	copy(original[start:end+1], newList)
 }
 
+// merge3 that has sentinel merge original[start:mid+1] and original[mid+1:end+1] into original[start:end+1],
+// notice: original[start:mid+1] and original[mid+1:end+1] must be ordered
+func merge3(original []int, start, mid, end int) {
+	max := 999
+	first := make([]int, mid-start+1)
+	second := make([]int, end-mid)
+	copy(first, original[start:mid+1])
+	copy(second, original[mid+1:end+1])
+
+	first = append(first, max)
+	second = append(second, max)
+	i, j, k := 0, 0, start
+
+	for first[i] != max {
+		if first[i] <= second[j] {
+			original[k] = first[i]
+			i++
+		} else {
+			original[k] = second[j]
+			j++
+		}
+		k++
+	}
+}
+
 // MergeSort ...
 func MergeSort(original []int) []int {
 	if 0 == len(original) {
