@@ -10,7 +10,7 @@ import (
 func AchieveSqrt(source, deltaThreshold float64, maxTry int) float64 {
 	var left, right, middle float64 = 1, source, 0
 	for i := 0; i < maxTry; i++ {
-		middle = (left + right) / 2
+		middle := left + (right-left)/2
 		middleSquare := middle * middle
 		if delta := math.Abs(middleSquare/source - 1); delta <= deltaThreshold {
 			break

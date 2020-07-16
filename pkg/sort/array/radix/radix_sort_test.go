@@ -3,7 +3,6 @@ package radix
 import (
 	"math"
 	"math/rand"
-	"sort"
 	"testing"
 	"time"
 
@@ -12,7 +11,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-var digits = 4
+var digits = 11
 
 // generateNum generate n number which has XX digits
 func generateNum(n int) (r []int) {
@@ -29,27 +28,31 @@ func generateNum(n int) (r []int) {
 }
 
 func TestRadixSort(t *testing.T) {
-	length := 1000000
+	length := 10000000
 	in := generateNum(length)
 	standard := make([]int, length)
 	in1 := make([]int, length)
+	in2 := make([]int, length)
 	copy(standard, in)
 	copy(in1, in)
+	copy(in2, in)
 
 	// fmt.Println("in", in)
 	// fmt.Println()
 
 	tools.FuncTime1(func() { quick.Sort(standard) }, "quick sort")
 
-	tools.FuncTime1(func() { sort.Ints(in) }, "Sort")
+	// tools.FuncTime1(func() { sort.Ints(in) }, "Sort")
 
 	// tools.FuncTime1(func() { radixSort(in) }, "radix sort")
 
 	tools.FuncTime1(func() { radixSort1(in1) }, "radix1 sort")
+	tools.FuncTime1(func() { radixSort2(in2) }, "radix2 sort")
 
 
-	require.Equal(t, standard, in)
+	// require.Equal(t, standard, in)
 	require.Equal(t, standard, in1)
+	// require.Equal(t, standard, in2)
 }
 
 func BenchmarkRadixSort(b *testing.B) {

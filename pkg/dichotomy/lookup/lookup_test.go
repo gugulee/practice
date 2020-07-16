@@ -1,6 +1,7 @@
 package lookup
 
 import (
+	"fmt"
 	"sort"
 	"testing"
 
@@ -24,4 +25,16 @@ func TestLookup(t *testing.T) {
 
 	out, err = Lookup(dict, "")
 	assert.EqualError(t, err, `target can not be empty`)
+}
+
+func TestLookup1(t *testing.T) {
+	dict := []string{"i", "am", "a", "programer", "of", "c", "and", "go"}
+	sort.Strings(dict)
+	fmt.Println("dict", dict)
+
+	out := Lookup1(dict, "go", 0, len(dict)-1)
+	assert.Equal(t, true, out)
+
+	out = Lookup1(dict, "cc", 0, len(dict)-1)
+	assert.Equal(t, false, out)
 }

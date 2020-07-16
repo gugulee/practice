@@ -13,6 +13,15 @@ func getBits(a int) int {
 	return i
 }
 
+func getHexBits(a int) int {
+	i := 0
+	for 0 != a {
+		i++
+		a >>= 4
+	}
+	return i
+}
+
 func sum(a []int) {
 	length := len(a)
 	for i := 1; i < length; i++ {
@@ -55,6 +64,43 @@ func radixSort(original []int) {
 }
 
 func radixSort1(original []int) {
+	length := len(original)
+
+	if 0 == length {
+		return
+	}
+
+	// the bits of the digit
+	bits := getHexBits(original[0])
+	r := make([]int, length)
+	bitRestore := make([]int, length)
+
+	for i := 1; i <= bits; i++ {
+		// the length of the bucket is 16 because of the bit range is 0~15
+		bucket := make([]int, 16)
+		rightShift := 4 * (i - 1)
+
+		for i := length - 1; i >= 0; i-- {
+			// get the number of the i'th bit(0x3039 >> (4*(1-1)) & 0xf = 9)
+			n := original[i] >> rightShift & 0xf
+			bucket[n]++
+			bitRestore[i] = n
+		}
+
+		sum(bucket)
+
+		for i := length - 1; i >= 0; i-- {
+			element := bitRestore[i]
+			position := bucket[element] - 1
+			r[position] = original[i]
+			bucket[element]--
+		}
+
+		copy(original, r)
+	}
+}
+
+func radixSort2(original []int) {
 	length := len(original)
 
 	if 0 == length {
