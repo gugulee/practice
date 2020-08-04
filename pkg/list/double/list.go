@@ -40,8 +40,8 @@ func (n *ListNode) Value() interface{} {
 //在链表尾部插入新节点
 func (l *LinkList) InsertTail(value string) {
 	node := l.head
-	for ; nil != node.Next; node = node.Next {
-
+	for nil != node.Next {
+		node = node.Next
 	}
 	l.InsertAfter(node, value)
 }

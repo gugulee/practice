@@ -25,3 +25,9 @@ func Remove(slice []int, index int) []int {
 	copy(slice[index:], slice[index+1:])
 	return slice[:len(slice)-1]
 }
+
+func Reverse(s []string) {
+	for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 {
+		s[i], s[j] = s[j], s[i]
+	}
+}
