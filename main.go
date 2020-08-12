@@ -5,16 +5,8 @@ import (
 )
 
 func main() {
-	a := []int{1, 3, 4, 5, 6, 7}
-	b := make([]int, 2*len(a))
-	copy(b, a)
-
-	fmt.Println(a)
-	fmt.Printf("a=%p\n", a)
-	fmt.Println(b)
-	fmt.Printf("b=%p\n", b)
-	a = b
-
-	fmt.Println(a)
-	fmt.Printf("a=%p\n", a)
+	a := [3]int{1, 2, 4}
+	b := &a
+	fmt.Printf("%p\n", b)
+	fmt.Println(b[0])
 }

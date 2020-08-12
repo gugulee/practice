@@ -1,7 +1,7 @@
-package find_duplicate
+package findduplicate
 
 import (
-	"github.com/practice/pkg/sort/merge_sort"
+	"github.com/practice/pkg/sort/array/merge"
 )
 
 // FindScopeDuplicate find ths duplicate digital if the digital is continuous
@@ -33,7 +33,7 @@ func FindScopeDuplicate(origin []int, n int) int {
 func FindDuplicate(origin []int) (int, error) {
 	var out = -1
 
-	origin = merge_sort.MergeSort(origin)
+	origin = merge.MergeSort(origin)
 	maxLen := origin[len(origin)-1]/64 + 1
 	storeBit := make([]int, maxLen)
 

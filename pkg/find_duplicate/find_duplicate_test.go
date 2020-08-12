@@ -1,4 +1,4 @@
-package find_duplicate
+package findduplicate
 
 import (
 	"github.com/stretchr/testify/require"
