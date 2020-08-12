@@ -12,7 +12,7 @@ type WordTable struct {
 // Node store the character and the starting address of the next node
 type Node struct {
 	// next is the starting address of the next node
-	next *[capacity]*Node
+	next [capacity]*Node
 
 	// we only store value in the last node
 	value string
@@ -26,7 +26,7 @@ func hash(character byte) int {
 
 func newNode(v string) *Node {
 	return &Node{
-		next:  &[capacity]*Node{},
+		next:  [capacity]*Node{},
 		value: v,
 	}
 }
