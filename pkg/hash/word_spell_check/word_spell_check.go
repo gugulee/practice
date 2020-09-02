@@ -21,7 +21,7 @@ type Node struct {
 // hash convert character to int,
 // such as 'a' -> 0, 'b' -> 1 and 'z' -> 25
 func hash(character byte) int {
-	return int(character - 0x61)
+	return int(character - 'a')
 }
 
 func newNode(v string) *Node {

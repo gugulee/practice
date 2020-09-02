@@ -46,9 +46,7 @@ func (lru *LruSingle) LruCache(value string) (bool, error) {
 	// node is nil means that not find value
 	if nil == node {
 		if list.Length() == lru.length {
-			node = list.Head()
-			for ; nil != node.Next(); node = node.Next() {
-
+			for node = list.Head(); nil != node.Next(); node = node.Next() {
 			}
 		}
 	}

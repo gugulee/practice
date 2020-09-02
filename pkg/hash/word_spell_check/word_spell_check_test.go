@@ -64,6 +64,7 @@ func TestWordSpellcheck(t *testing.T) {
 		w.Insert(word)
 	}
 
+	fi.Seek(0, 0)
 	// search
 	for {
 		a, _, c := br.ReadLine()
@@ -74,7 +75,6 @@ func TestWordSpellcheck(t *testing.T) {
 		if 0 == len(word) {
 			continue
 		}
-		w.Search(word)
-		require.Equal(t, true, w.Search(word))
+		require.Equalf(t, true, w.Search(word), word)
 	}
 }

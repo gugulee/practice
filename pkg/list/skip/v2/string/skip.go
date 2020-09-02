@@ -1,4 +1,4 @@
-package v2
+package string
 
 import (
 	"fmt"
@@ -6,7 +6,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/practice/pkg/constants"
 	"github.com/practice/pkg/tools"
 )
 
@@ -23,7 +22,7 @@ type Node struct {
 	// next it the next node of node.next[x],
 	// such as node.next[0] is the next node where at the height 0
 	next  []*Node
-	value int
+	value string
 
 	// layer is the layer where the node dewll in the skip list.
 	// when layer is 2, node.next[2], node.next[1] and node.next[0] must exist.
@@ -45,7 +44,7 @@ type Skip struct {
 }
 
 // NewNode return the node
-func NewNode(layer, value int) *Node {
+func NewNode(layer int, value string) *Node {
 	return &Node{
 		next:  make([]*Node, layer),
 		value: value,
@@ -61,7 +60,8 @@ func New(capacity int) *Skip {
 
 	// min is the minimum is the skip list
 	return &Skip{
-		head: NewNode(capacity, constants.MinInt),
+		head:     NewNode(capacity, ""),
+		capacity: capacity,
 	}
 }
 
@@ -70,8 +70,13 @@ func (s *Skip) Head() *Node {
 	return s.head
 }
 
+// IsEmpty return true if the skip is empty
+func (s *Skip) IsEmpty() bool {
+	return nil == s.head.next[0]
+}
+
 // Insert into the skip list with the value
-func (s *Skip) Insert(value int) {
+func (s *Skip) Insert(value string) {
 	// we will insert the value in the layer where layer < newNodeLayer
 	newNodeLayer := randomLayer()
 	// avoid the height increasing too fast
@@ -108,7 +113,7 @@ func (s *Skip) Insert(value int) {
 }
 
 // Search search the node which held the value in the skip list
-func (s *Skip) Search(value int) *Node {
+func (s *Skip) Search(value string) *Node {
 	p := s.head
 
 	// find p which value <= p.value
@@ -126,7 +131,7 @@ func (s *Skip) Search(value int) *Node {
 }
 
 // Delete delete the node which held the value in the skip list
-func (s *Skip) Delete(value int) {
+func (s *Skip) Delete(value string) {
 	p := s.head
 
 	// find the node which node.value < value < node.next.value
@@ -153,14 +158,29 @@ func (s *Skip) Print() string {
 	return strings.Join(r, "\n")
 }
 
+// AllElement return all element of the skip list
+func (s *Skip) AllElement() (r []string) {
+	if s.IsEmpty() {
+		return nil
+	}
+
+	node := s.head
+	for ; node != nil; node = node.next[0] {
+		if 0 != len(node.value) {
+			r = append(r, node.value)
+		}
+	}
+	return r
+}
+
 // Print print the layer of the skip list
 func (n *Node) Print(layer int) string {
 	node := n
 	var info []string
 
 	for ; node != nil; node = node.next[layer] {
-		v := fmt.Sprintf("%d", node.value)
-		if constants.MinInt == node.value {
+		v := node.value
+		if 0 == len(node.value) {
 			v = "head"
 		}
 
@@ -172,7 +192,7 @@ func (n *Node) Print(layer int) string {
 
 // Search search the list with the value forward,
 // return the node which node.value < value < node.next.value
-func (n *Node) Search(value, layer int) *Node {
+func (n *Node) Search(value string, layer int) *Node {
 	node := n
 
 	for nil != node && node.value < value {

@@ -1,4 +1,4 @@
-package skipv2
+package v2
 
 import (
 	"fmt"
@@ -11,13 +11,13 @@ func TestPrint(t *testing.T) {
 	s := New(0)
 	s.height = 3
 
-	s.head.next[0] = newNode(1, 1)
-	s.head.next[0].next[0] = newNode(1, 3)
-	s.head.next[0].next[0].next[0] = newNode(1, 5)
-	s.head.next[0].next[0].next[0].next[0] = newNode(1, 7)
+	s.head.next[0] = NewNode(1, 1)
+	s.head.next[0].next[0] = NewNode(1, 3)
+	s.head.next[0].next[0].next[0] = NewNode(1, 5)
+	s.head.next[0].next[0].next[0].next[0] = NewNode(1, 7)
 
-	s.head.next[1] = newNode(2, 1)
-	s.head.next[1].next[1] = newNode(2, 5)
+	s.head.next[1] = NewNode(2, 1)
+	s.head.next[1].next[1] = NewNode(2, 5)
 
 	fmt.Println(s.Print())
 }
