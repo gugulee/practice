@@ -25,14 +25,16 @@ type LRU struct {
 	// the capacity of hash table
 	capacity int
 
-	// the max length of list, it's also the capacity of the lru
+	// the max length of double list, it's also the capacity of the lru
 	maxLength int
 
 	// the length of list
 	length int
 
-	// the last node of the list, we will insert new node after the last node
-	last *Entry
+	// last is the last node of the double list, we will insert new node after the last node,
+	// head is the head node of the double list, the head node does not store data,
+	// that is head.next is the first node store data
+	head, last *Entry
 
 	entry []*Entry
 }
@@ -66,12 +68,17 @@ func New(capacity, maxLength int) *LRU {
 		entry[i] = &Entry{}
 	}
 
-	return &LRU{
+	lru := &LRU{
 		capacity:  capacity,
 		maxLength: maxLength,
 		length:    0,
+		head:      &Entry{},
 		entry:     entry,
 	}
+
+	// the last node is the head initially
+	lru.last = lru.head
+	return lru
 }
 
 // InsertTail insert the new node in the tail of the list,
@@ -144,35 +151,34 @@ func (lru *LRU) Capacity() int {
 	return lru.capacity
 }
 
+// IsFull return true if lru is full
+func (lru *LRU) IsFull() bool {
+	return lru.maxLength <= lru.length
+}
+
 // Insert insert data into hash table
 func (lru *LRU) Insert(data string) {
+	// return if lru is full
+	if lru.IsFull() {
+		return
+	}
+
 	hashValue := hash(data, lru.capacity)
 
 	// insert node in the tail of lru.entry[hashValue],
 	// and insert new node in the tail of the double list
 	newNode := lru.entry[hashValue].InsertTail(data)
-	lru.length++
 
 	/* insert new node after the last node of the double list*/
-	// no more action if the last node of the double list is empty,
-	// otherwise, insert new node after the last node
-	if nil == lru.last {
-		// update the last node
-		lru.last = newNode
-		return
-	}
-
-	nextNode := lru.last.next
-	newNode.next = nextNode
-	lru.last.next = newNode
-
-	if nil != nextNode {
-		newNode.prev = newNode
-	}
-	newNode.prev = lru.last
+	node := lru.last
+	node.next = newNode
+	newNode.prev = node
 
 	// update the last node
 	lru.last = newNode
+
+	// length add 1
+	lru.length++
 }
 
 // Search search the lru with data
@@ -196,10 +202,35 @@ func (lru *LRU) Delete(data string) {
 	prev := node.prev
 	next := node.next
 
-	if nil != prev {
-		prev.next = next
+	prev.next = next
+	if nil != next {
+		next.prev = prev
 	}
 
+	lru.length--
+
+	// if the delete node is the last node, update the last node
+	if node == lru.last {
+		lru.last = prev
+	}
+}
+
+// DeleteNode delete the node in the double list
+func (lru *LRU) DeleteNode(node *Entry) {
+	if nil == node {
+		return
+	}
+
+	hashValue := hash(node.data, lru.capacity)
+
+	// delete node from hash collision list
+	lru.entry[hashValue].Delete(node.data)
+
+	// delete node from double list
+	prev := node.prev
+	next := node.next
+
+	prev.next = next
 	if nil != next {
 		next.prev = prev
 	}
@@ -223,10 +254,23 @@ func (lru *LRU) ReverstPrint() string {
 		}
 	}
 
-	return strings.Join(r, "->")
+	return strings.Join(r, "<-")
 }
 
 // Lru is the lru cache which was implemented be hash table
 func (lru *LRU) Lru(data string) {
+	switch lru.Search(data) {
+	case nil: // no found
+		// delete the node held the oldest data(the first node in the double list) when lru is full
+		if lru.IsFull() {
+			lru.DeleteNode(lru.head.next)
+		}
 
+	default: // found
+		// delete node
+		lru.Delete(data)
+	}
+
+	// insert node after the last node
+	lru.Insert(data)
 }

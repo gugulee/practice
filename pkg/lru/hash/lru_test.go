@@ -47,7 +47,7 @@ func TestEntryDelete(t *testing.T) {
 }
 
 func TestInsert(t *testing.T) {
-	lru := New(0, 0)
+	lru := New(0, 7)
 	words := []string{"hello", "world", "we", "are", "helloa", "wea", "helloaa"}
 
 	// insert
@@ -75,7 +75,13 @@ func TestInsert(t *testing.T) {
 	require.Equal(t, word, lru.entry[hash(word, lru.capacity)].hNext.data)
 
 	// validate the double list
-	require.Equal(t, "helloaa->wea->helloa->are->we->world->hello", lru.ReverstPrint())
+	require.Equal(t, "helloaa<-wea<-helloa<-are<-we<-world<-hello", lru.ReverstPrint())
+	require.Equal(t, "hello", lru.head.next.data)
+
+	// if lru is full, can not insert node in lru
+	lru.Insert("practice")
+	require.Equal(t, 7, lru.length)
+	require.Equal(t, "helloaa<-wea<-helloa<-are<-we<-world<-hello", lru.ReverstPrint())
 }
 
 func TestSearch(t *testing.T) {
@@ -131,10 +137,63 @@ func TestDelete(t *testing.T) {
 	lru.Delete(word)
 	require.Nil(t, lru.Search(word))
 
-	require.Equal(t, lru.Search("wea"), lru.last)
-	require.Equal(t, "wea->helloa->are->world", lru.ReverstPrint())
+	require.Equal(t, "wea", lru.last.data)
+	require.Equal(t, "wea<-helloa<-are<-world", lru.ReverstPrint())
 }
 
-func TestLruCache(t *testing.T) {
+func TestDeleteNode(t *testing.T) {
+	lru := New(0, 0)
+	words := []string{"hello", "world", "we", "are", "helloa", "wea", "helloaa"}
 
+	// insert
+	for _, word := range words {
+		lru.Insert(word)
+		require.Equal(t, word, lru.last.data)
+	}
+
+	fmt.Println(lru.ReverstPrint())
+	fmt.Println("-----------------------------------")
+
+	word := "hello"
+	lru.DeleteNode(lru.Search(word))
+	require.Nil(t, lru.Search(word))
+
+	word = "we"
+	lru.DeleteNode(lru.Search(word))
+	require.Nil(t, lru.Search(word))
+
+	word = "helloaa"
+	lru.DeleteNode(lru.Search(word))
+	require.Nil(t, lru.Search(word))
+
+	require.Equal(t, "wea", lru.last.data)
+	require.Equal(t, "wea<-helloa<-are<-world", lru.ReverstPrint())
+}
+
+func TestLru(t *testing.T) {
+	lru := New(0, 7)
+	words := []string{"hello", "world", "we", "are", "helloa", "wea"}
+
+	// insert
+	for _, word := range words {
+		lru.Lru(word)
+		require.Equal(t, word, lru.last.data)
+	}
+
+	require.Equal(t, "wea<-helloa<-are<-we<-world<-hello", lru.ReverstPrint())
+
+	// not full and not found
+	word := "helloaa"
+	lru.Lru(word)
+	require.Equal(t, "helloaa<-wea<-helloa<-are<-we<-world<-hello", lru.ReverstPrint())
+
+	// delete "hello" and insert "app" when full
+	word = "app"
+	lru.Lru(word)
+	require.Equal(t, "app<-helloaa<-wea<-helloa<-are<-we<-world", lru.ReverstPrint())
+
+	// delete "wea" and insert "wea" when found
+	word = "wea"
+	lru.Lru(word)
+	require.Equal(t, "wea<-app<-helloaa<-helloa<-are<-we<-world", lru.ReverstPrint())
 }

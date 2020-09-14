@@ -15,6 +15,7 @@ require (
 	github.com/vishvananda/netlink v1.1.0
 	go.etcd.io/etcd v3.3.20+incompatible
 	golang.org/x/text v0.3.2
+	golang.org/x/tools v0.0.0-20190524140312-2c0ae7006135
 	google.golang.org/genproto v0.0.0-20200430143042-b979b6f78d84 // indirect
 	google.golang.org/grpc v1.29.1 // indirect
 	k8s.io/apimachinery v0.18.2
