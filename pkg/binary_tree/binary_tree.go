@@ -15,7 +15,7 @@ type Node struct {
 
 // BinaryTree ...
 type BinaryTree struct {
-	// the node that head.left and head.right point to is root node
+	// the node that head.left and head.right point to is the root node
 	head *Node
 }
 
