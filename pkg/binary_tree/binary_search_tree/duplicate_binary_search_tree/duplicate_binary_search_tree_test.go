@@ -88,14 +88,14 @@ func TestSearch(t *testing.T) {
 func TestDelete(t *testing.T) {
 	requires := require.New(t)
 	bst := New()
-	data := []int{13, 8, 18, 6, 10, 16, 20, 18, 19}
+	data := []int{13, 8, 18, 6, 10, 16, 20, 18, 19, 18}
 
 	for _, d := range data {
 		bst.Insert(d)
 	}
 
 	bst.Delete(6)
-	requires.Equal([]int{13, 8, 18, 10, 16, 20, 18, 19}, bst.BFS())
+	requires.Equal([]int{13, 8, 18, 10, 16, 20, 18, 19, 18}, bst.BFS())
 
 	bst.Delete(18)
 	requires.Equal([]int{13, 8, 19, 10, 16, 20}, bst.BFS())
