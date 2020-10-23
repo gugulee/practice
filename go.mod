@@ -3,26 +3,19 @@ module github.com/practice
 go 1.13
 
 require (
-	github.com/coreos/etcd v3.3.20+incompatible
-	github.com/coreos/go-systemd v0.0.0-00010101000000-000000000000
+	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/deckarep/golang-set v1.7.1
+	github.com/gin-gonic/gin v1.6.3
 	github.com/golang/protobuf v1.4.1 // indirect
-	github.com/google/uuid v1.1.1
+	github.com/kr/pretty v0.1.0 // indirect
 	github.com/onsi/ginkgo v1.11.0
 	github.com/onsi/gomega v1.7.0
-	github.com/pkg/errors v0.9.1 // indirect
+	github.com/sqs/goreturns v0.0.0-20181028201513-538ac6014518
 	github.com/stretchr/testify v1.4.0
-	github.com/vishvananda/netlink v1.1.0
-	go.etcd.io/etcd v3.3.20+incompatible
-	golang.org/x/text v0.3.2
-	golang.org/x/tools v0.0.0-20190524140312-2c0ae7006135
-	google.golang.org/genproto v0.0.0-20200430143042-b979b6f78d84 // indirect
-	google.golang.org/grpc v1.29.1 // indirect
-	k8s.io/apimachinery v0.18.2
-	k8s.io/client-go v0.18.2
-	k8s.io/gengo v0.0.0-20190128074634-0689ccc1d7d6
-	k8s.io/klog v1.0.0
-	sigs.k8s.io/kustomize v2.0.3+incompatible
+	golang.org/x/net v0.0.0-20191004110552-13f9640d40b9 // indirect
+	golang.org/x/text v0.3.2 // indirect
+	gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127 // indirect
+	gopkg.in/yaml.v2 v2.2.8 // indirect
 )
 
 replace github.com/coreos/go-systemd => github.com/coreos/go-systemd/v22 v22.0.0

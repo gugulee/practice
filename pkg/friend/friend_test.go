@@ -45,12 +45,12 @@ func generateRelation(userMax int, relations int) []*Node {
 }
 
 func TestSearchByQueue(t *testing.T) {
-	usersNode := generateRelation(30000000, 50000000)
+	usersNode := generateRelation(100, 200)
 	//for _, user := range usersNode {
 	//	fmt.Printf("user %s friend is %s\n", user.UserID, user.Friends)
 	//}
 
-	SearchByQueue(usersNode, 0, 2)
+	bfs(usersNode, 0, 2)
 }
 
 func TestPrint(t *testing.T) {

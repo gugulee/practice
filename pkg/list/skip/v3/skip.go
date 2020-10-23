@@ -6,7 +6,6 @@ import (
 	"strings"
 	"time"
 
-	// "github.com/practice/pkg/constants"
 	"github.com/practice/pkg/tools"
 	vs "github.com/practice/pkg/utils/value_store"
 )
@@ -70,6 +69,11 @@ func New(capacity int, value vs.Value) *Skip {
 		capacity: defaultCapacity,
 		head:     NewNode(capacity, value),
 	}
+}
+
+// Head return the head of the skip list
+func (s *Skip) Head() *Node {
+	return s.head
 }
 
 // Insert into the skip list with the value
@@ -217,6 +221,18 @@ func (n *Node) Print(layer int) string {
 	}
 
 	return fmt.Sprintf("layer %d: %s", layer, strings.Join(info, "->"))
+}
+
+// PrintSlice print the layer of the skip list in the slice
+func (n *Node) PrintSlice(layer int) (info []vs.Value) {
+	// skip head
+	node := n.next[layer]
+
+	for ; node != nil; node = node.next[layer] {
+		info = append(info, node.value)
+	}
+
+	return info
 }
 
 // Search search the list with the value forward,

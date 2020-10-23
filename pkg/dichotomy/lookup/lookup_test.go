@@ -41,27 +41,27 @@ func TestLookup1(t *testing.T) {
 
 func TestBsearch(t *testing.T) {
 	a := []int{1, 3, 4, 5, 6, 8, 8, 8, 11, 18}
-	out := bsearch(a, 8)
+	out := Bsearch(a, 8)
 	assert.Equal(t, 5, out)
 
 	a = []int{1, 3, 4, 5, 8, 8, 8, 8, 11, 18}
-	out = bsearch(a, 8)
+	out = Bsearch(a, 8)
 	assert.Equal(t, 4, out)
 
 	a = []int{1, 3, 4, 5, 8, 8, 8, 8, 11, 18}
-	out = bsearch(a, 2)
+	out = Bsearch(a, 2)
 	assert.Equal(t, -1, out)
 
 	a = []int{1, 3, 4, 5, 6, 7, 8, 8, 11, 18}
-	out = bsearch(a, 8)
+	out = Bsearch(a, 8)
 	assert.Equal(t, 6, out)
 
 	a = []int{1, 2, 2, 3, 4, 6, 7, 8, 11, 18}
-	out = bsearch(a, 2)
+	out = Bsearch(a, 2)
 	assert.Equal(t, 1, out)
 
 	a = []int{2, 2, 2, 3, 4, 6, 7, 8, 11, 18}
-	out = bsearch(a, 2)
+	out = Bsearch(a, 2)
 	assert.Equal(t, 0, out)
 }
 

@@ -8,12 +8,14 @@ import (
 	"strings"
 )
 
+// Node ...
 type Node struct {
 	Friends []string
 	UserID  string
 	Degree  int
 }
 
+// NewNode ...
 func NewNode(id string) *Node {
 	return &Node{
 		Friends: []string{},
@@ -22,19 +24,20 @@ func NewNode(id string) *Node {
 	}
 }
 
-func SearchByQueue(node []*Node, userId, target int) {
+// bfs ...
+func bfs(node []*Node, userID, target int) {
 	defer tools.FuncTime()()
-	if userId > len(node) {
+	if userID > len(node) {
 		return
 	}
 
-	if userId == target {
+	if userID == target {
 		return
 	}
 
 	var queue []*Node
-	queue = append(queue, node[userId])
-	visited := set.NewSet(userId)
+	queue = append(queue, node[userID])
+	visited := set.NewSet(userID)
 
 	for len(queue) > 0 {
 		current := queue[0]
@@ -43,7 +46,7 @@ func SearchByQueue(node []*Node, userId, target int) {
 		if current.Degree > 0 {
 			//fmt.Printf("user %d friend %s degree is: %v\n", userId, current.UserID, current.Degree)
 			if current.UserID == strconv.Itoa(target) {
-				fmt.Printf("user %d friend %s degree is: %v\n", userId, current.UserID, current.Degree)
+				fmt.Printf("user %d friend %s degree is: %v\n", userID, current.UserID, current.Degree)
 				break
 			}
 		}
@@ -60,15 +63,7 @@ func SearchByQueue(node []*Node, userId, target int) {
 	}
 }
 
-/*
-user id 0 friend: 1 4
-user id 1 friend: 3 4 0
-user id 4 friend: 1 5 3 6
-user id 3 friend: 0 4 1
-user id 5 friend: 0 4 3
-user id 6 friend: 5 1 0 2
-user id 2 friend: 3 6 1 0
-*/
+// Print ...
 func Print(node []*Node, id int) {
 	if id > len(node) {
 		return

@@ -44,8 +44,8 @@ func Lookup1(sortedDict []string, target string, left, right int) bool {
 	}
 }
 
-// bsearchOptimize lookup the first value in the a, return the index of target
-func bsearch(a []int, value int) int {
+// Bsearch lookup the first value in the a, return the index of target
+func Bsearch(a []int, value int) int {
 	low := 0
 	high := len(a) - 1
 

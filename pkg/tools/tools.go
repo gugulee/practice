@@ -46,3 +46,37 @@ func MapDeepCopy(b, a map[int]int) {
 		b[k] = a[k]
 	}
 }
+
+// GetMinIdx return the index of the minimum
+func GetMinIdx(a []int) int {
+	length := len(a)
+	if 0 == length {
+		return -1
+	}
+
+	minIdx := -1
+	// find the minimum index which a[minIdx]>0
+	for i := 0; i < length; i++ {
+		if a[i] > 0 {
+			minIdx = i
+			break
+		}
+	}
+
+	if -1 == minIdx {
+		return -1
+	}
+
+	for i := minIdx+1; i < length; i++ {
+		// neglect the negative
+		if a[i] < 0 {
+			continue
+		}
+
+		if a[minIdx] > a[i] {
+			minIdx = i
+		}
+	}
+
+	return minIdx
+}

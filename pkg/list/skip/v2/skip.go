@@ -22,7 +22,7 @@ func init() {
 type Node struct {
 	// next it the next node of node.next[x],
 	// such as node.next[0] is the next node where at the height 0
-	next  []*Node
+	next []*Node
 
 	value int
 
@@ -169,6 +169,21 @@ func (n *Node) Print(layer int) string {
 	}
 
 	return fmt.Sprintf("layer %d: %s", layer, strings.Join(info, "->"))
+}
+
+// PrintSlice print the layer of the skip list in the slice
+func (n *Node) PrintSlice(layer int) (info []int) {
+	node := n
+
+	for ; node != nil; node = node.next[layer] {
+		if constants.MinInt == node.value {
+			continue
+		}
+
+		info = append(info, node.value)
+	}
+
+	return info
 }
 
 // Search search the list with the value forward,
