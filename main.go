@@ -2,19 +2,15 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
+	"time"
 )
 
-// Node is the node of the binary tree
-type Node struct {
-	data        string
-	left, right *Node
-}
-
 func main() {
-	a := &Node{data: "a"}
-	stack := []*Node{a}
-	fmt.Println(stack)
+	rand.Seed(time.Now().Unix())
 
-	stack = append(stack, a.left)
-	fmt.Println(stack)
+	for i := 0; i < 10; i++ {
+		targetVertex := rand.Intn(10)
+		fmt.Println(targetVertex)
+	}
 }
