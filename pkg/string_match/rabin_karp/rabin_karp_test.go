@@ -57,11 +57,11 @@ func Test_rkSearchMatrixString(t *testing.T) {
 	out := rkSearchMatrixString(main, pattern)
 	r.True(out)
 
-	// pattern = [][]string{
-	// 	{"c", "a", "f"},
-	// 	{"e", "f", "d"},
-	// }
+	pattern = [][]string{
+		{"c", "a", "f"},
+		{"e", "f", "d"},
+	}
 
-	// out = rkSearchMatrixString(main, pattern)
-	// r.False(out)
+	out = rkSearchMatrixString(main, pattern)
+	r.False(out)
 }

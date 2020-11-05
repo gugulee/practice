@@ -9,7 +9,7 @@ const defaultBase = 26
 // exponent get the value(base^exponent) and store the value in the result,
 // e.g., result[2]=base^2, result[1]=base^1, result[0]=base^0
 func exponent(base, exponent int) (result []int) {
-	result = make([]int, exponent)
+	result = make([]int, exponent+1)
 	for i := range result {
 		result[i] = int(math.Pow(float64(base), float64(i)))
 	}
@@ -80,7 +80,66 @@ func rkSearchMatrixString(main, pattern [][]string) bool {
 		return false
 	}
 
+	exponent26 := exponent(defaultBase, lenPatternColumn)
+	exponent10 := exponent(10, lenPatternRow)
 
+	// store the hash of main string
+	hashMain := make([][]int, lenMainRow-lenPatternRow+1)
+	for i := range hashMain {
+		hashMain[i] = make([]int, lenMainColumn-lenPatternColumn+1)
+	}
 
+	// store the hash of pattern
+	hashPattern := 0
+
+	// calculate the hash of pattern and hashMain[0][0]
+	for i := range pattern {
+		tmpPattern := 0
+		tmpMain := 0
+		for j := range pattern[i] {
+			idxColumn := lenPatternColumn - 1 - j
+			tmpPattern += exponent26[idxColumn] * int([]byte(pattern[i][j])[0]-'a')
+			tmpMain += exponent26[idxColumn] * int([]byte(main[i][j])[0]-'a')
+		}
+		idxRow := lenPatternRow - 1 - i
+		hashPattern += exponent10[idxRow] * tmpPattern
+		hashMain[0][0] += exponent10[idxRow] * tmpMain
+	}
+
+	// calculate the hash of hashMain[1:][0]
+	for i := 1; i <= lenMainRow-lenPatternRow; i++ {
+		tmp := 0
+		idxColumn := lenPatternColumn - 1
+		for j := 0; j <= lenPatternColumn-1; j++ {
+			tmp += exponent26[idxColumn]*int([]byte(main[i-1+lenPatternRow][j])[0]-'a') -
+				exponent10[lenPatternRow]*(exponent26[idxColumn]*int([]byte(main[i-1][j])[0]-'a'))
+			idxColumn--
+		}
+
+		hashMain[i][0] = 10*hashMain[i-1][0] + tmp
+	}
+
+	// calculate the hash of hashMain[i][j]
+	for i := 0; i <= lenMainRow-lenPatternRow; i++ {
+		for j := 1; j <= lenMainColumn-lenPatternColumn; j++ {
+			tmp := 0
+			idxRow := lenPatternRow - 1
+			for k := i; k <= i+lenPatternRow-1; k++ {
+				tmp += exponent10[idxRow]*int([]byte(main[k][j+lenPatternColumn-1])[0]-'a') -
+					exponent26[lenPatternColumn]*exponent10[idxRow]*int([]byte(main[k][j-1])[0]-'a')
+				idxRow--
+			}
+
+			hashMain[i][j] = 26*hashMain[i][j-1] + tmp
+		}
+	}
+
+	for i := range hashMain {
+		for j := range hashMain[i] {
+			if hashPattern == hashMain[i][j] {
+				return true
+			}
+		}
+	}
 	return false
 }
