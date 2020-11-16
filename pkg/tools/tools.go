@@ -80,3 +80,19 @@ func GetMinIdx(a []int) int {
 
 	return minIdx
 }
+
+// Min get the minimum
+func Min(x, y int) int {
+    if x < y {
+        return x
+    }
+    return y
+}
+
+// Max get the maximum
+func Max(x, y int) int {
+    if x < y {
+        return y
+    }
+    return x
+}

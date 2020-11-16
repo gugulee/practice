@@ -42,3 +42,11 @@ func TestMapDeepCopy(t *testing.T) {
 	require.NotEqual(t, fmt.Sprintf("%p", a), fmt.Sprintf("%p", b))
 	require.Exactly(t, a, b)
 }
+
+func TestMax(t *testing.T) {
+	a := 3
+	b := 4
+
+	out := Max(a, b)
+	require.Equal(t, b, out)
+}

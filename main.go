@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
+	"strings"
 )
 
 func main() {
-	a := "a"
-	fmt.Println([]byte(a)[0])
+	a := "acab"
+	fmt.Println(strings.LastIndex(a, "a"))
 }
