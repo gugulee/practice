@@ -1,11 +1,14 @@
 package main
 
-import (
-	"fmt"
-	"strings"
-)
+import "fmt"
 
 func main() {
-	a := "acab"
-	fmt.Println(strings.LastIndex(a, "a"))
+	i := 0
+	for ; i < 10; i++ {
+		if i == 5 {
+			break
+		}
+	}
+
+	fmt.Println(i)
 }
