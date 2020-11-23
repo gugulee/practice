@@ -36,7 +36,7 @@ func TestInset(t *testing.T) {
 	assert.Equal(t, true, out)
 }
 
-func TestSearchByStackt(*testing.T) {
+func TestSearchByStack(*testing.T) {
 	fi, err := os.Open(`word`)
 	if err != nil {
 		fmt.Printf("Error: %s\n", err)

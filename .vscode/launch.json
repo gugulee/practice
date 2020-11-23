@@ -12,6 +12,7 @@
             "program": "${fileDirname}",
             "env": {},
             "args": [],
+            "trace":"verbose",
         }
     ]
 }
