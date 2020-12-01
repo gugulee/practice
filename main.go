@@ -2,13 +2,13 @@ package main
 
 import "fmt"
 
-func main() {
-	i := 0
-	for ; i < 10; i++ {
-		if i == 5 {
-			break
-		}
-	}
+var sweetsSize = []int{3, 5, 7, 10, 13}
 
-	fmt.Println(i)
+func main() {
+	j := 0
+	for j, s := range sweetsSize {
+		_ = s
+		j = j
+	}
+	fmt.Println(j)
 }

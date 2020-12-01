@@ -50,3 +50,10 @@ func TestMax(t *testing.T) {
 	out := Max(a, b)
 	require.Equal(t, b, out)
 }
+
+func Test_Remove(t *testing.T) {
+	a := []int{3, 5, 7, 10, 13}
+
+	out:=Remove(a, 0)
+	fmt.Println(out)
+}
