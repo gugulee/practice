@@ -5,19 +5,8 @@ import "fmt"
 var sweetsSize = []int{3, 5, 7, 10, 13}
 
 func main() {
-	a := "51234"
-	i := 0
-	for i < len(a) {
-		if i == len(a)-1 {
-			break
-		}
-
-		if a[i] > a[i+1] {
-			a = a[:i] + a[i+1:]
-		} else {
-			i++
-		}
-	}
-
+	a := []int{1, 2, 3, 4, 5}
+	b := []int{8, 8}
+	copy(a[2:3+1], b)
 	fmt.Println(a)
 }
