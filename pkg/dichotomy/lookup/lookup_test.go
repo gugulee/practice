@@ -130,3 +130,29 @@ func TestBsearch4(t *testing.T) {
 	out = bsearch4(a, 7)
 	assert.Equal(t, 5, out)
 }
+
+func TestBsearch5(t *testing.T) {
+	a := []int{1, 3, 4, 5, 6, 8, 8, 8, 11, 18}
+	out := bsearch5(a, 8)
+	assert.Equal(t, 8, out)
+
+	a = []int{20, 20, 30}
+	out = bsearch5(a, 1)
+	assert.Equal(t, 0, out)
+	
+	a = []int{5, 20, 30}
+	out = bsearch5(a, 5)
+	assert.Equal(t, 1, out)
+
+	a = []int{5, 20, 30}
+	out = bsearch5(a, 10)
+	assert.Equal(t, 1, out)
+
+	a = []int{5, 20, 20, 30}
+	out = bsearch5(a, 40)
+	assert.Equal(t, -1, out)
+
+	a = []int{5, 20, 20, 30}
+	out = bsearch5(a, 20)
+	assert.Equal(t, 3, out)
+}

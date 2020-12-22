@@ -65,7 +65,7 @@ func Bsearch(a []int, value int) int {
 	return -1
 }
 
-// bsearch1 lookup the last value in the a, return the index of target
+// bsearch1 lookup the last value is equal to value in the a, return the index of target
 func bsearch1(a []int, value int) int {
 	length := len(a)
 	low, high := 0, length-1
@@ -134,7 +134,7 @@ func bsearch4(a []int, value int) int {
 
 	for low <= high {
 		mid := low + (high-low)>>1
-		
+
 		if value == a[mid] {
 			return mid
 		}
@@ -155,6 +155,34 @@ func bsearch4(a []int, value int) int {
 			} else {
 				high = mid - 1
 			}
+		}
+	}
+
+	return -1
+}
+
+// bsearch5 lookup the first value which is greater than value in the a, return the index of value
+func bsearch5(a []int, value int) int {
+	length := len(a)
+	low, high := 0, length-1
+
+	for low <= high {
+		mid := low + ((high - low) >> 1)
+		if value >= a[mid] {
+			if mid == length-1 {
+				return -1
+			}
+
+			if a[mid+1] > value {
+				return mid + 1
+			}
+
+			low = mid + 1
+		} else {
+			if 0 == mid || a[mid-1] < value {
+				return mid
+			}
+			high = mid - 1
 		}
 	}
 
