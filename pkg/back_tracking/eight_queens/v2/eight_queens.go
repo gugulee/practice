@@ -11,7 +11,7 @@ func eightQueens(in []int, row int) {
 		fmt.Println("------------------------------------")
 		return
 	}
-
+	
 	for column := 0; column < 8; column++ {
 		if isOK(in, row, column) {
 			in[row] = column
