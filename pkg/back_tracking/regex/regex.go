@@ -15,7 +15,7 @@ func rmatch(ti, pj int, p, text string) {
 		}
 		return 
 	}
-
+	
 	if p[pj] == '*' {
 		for i := 0; i <= len(text)-ti; i++ {
 			rmatch(ti+i, pj+1, p, text)

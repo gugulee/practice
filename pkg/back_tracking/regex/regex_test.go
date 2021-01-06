@@ -7,6 +7,7 @@ import (
 )
 
 func Test_regex(t *testing.T) {
+	
 	text := "bc"
 	p := "b?c"
 	rmatch(0, 0, p, text)
