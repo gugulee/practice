@@ -17,4 +17,5 @@ func main() {
 
 	fmt.Println(right)
 	fmt.Println(in)
+	fmt.Println(6/3*3)
 }
