@@ -30,6 +30,10 @@ func sudoku(s, rol, col, grid [][]int, row, column int) {
 	}
 
 	for i := 1; i <= 9; i++ {
+		if found {
+			return
+		}
+
 		// number i does exit at row or column or grid
 		if rol[row][i] != 0 || col[column][i] != 0 || grid[column/3+row/3*3][i] != 0 {
 			continue
@@ -39,7 +43,7 @@ func sudoku(s, rol, col, grid [][]int, row, column int) {
 		rol[row][i] = 1
 		col[column][i] = 1
 		grid[column/3+row/3*3][i] = 1
-		
+
 		if column == 8 {
 			sudoku(s, rol, col, grid, row+1, 0)
 		} else {

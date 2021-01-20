@@ -4,18 +4,19 @@ import (
 	"fmt"
 )
 
+type test struct {
+	a int
+}
+
+func (t *test) add(a int) *test {
+	t.a = a
+	fmt.Printf("1 %p\n", t)
+	return t
+}
+
 func main() {
-	in := []int{
-		7, 7,
-	}
-
-	right := make([]int, len(in))
-
-
-	in[0] = 100
-	right[0] = 200
-
-	fmt.Println(right)
-	fmt.Println(in)
-	fmt.Println(6/3*3)
+    t := &test{}
+    fmt.Printf("1 %p\n", t)
+	out := t.add(10)
+    fmt.Println(out)
 }
