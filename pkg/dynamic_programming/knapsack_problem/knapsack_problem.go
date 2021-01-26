@@ -32,7 +32,7 @@ func kp(items []int, w int) (result int) {
 	printData(states)
 
 	// return the maximum in the last layer
-	for i := w; w >= 0; i-- {
+	for i := w; i >= 0; i-- {
 		if true == states[len(items)-1][i] {
 			return i
 		}
@@ -60,7 +60,7 @@ func kp1(items []int, w int) (result int) {
 		}
 	}
 
-	for i := w; w >= 0; i-- {
+	for i := w; i >= 0; i-- {
 		if true == states[i] {
 			return i
 		}
