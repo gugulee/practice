@@ -166,7 +166,7 @@ func (lru *LRU) Insert(data string) {
 	hashValue := hash(data, lru.capacity)
 
 	// insert node in the tail of lru.entry[hashValue],
-	// and insert new node in the tail of the double list
+	// and insert new node in the tail of the single list
 	newNode := lru.entry[hashValue].InsertTail(data)
 
 	/* insert new node after the last node of the double list*/
