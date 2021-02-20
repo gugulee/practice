@@ -1,22 +1,14 @@
 package main
 
-import (
-	"fmt"
-
-	"github.com/pkg/errors"
-)
-
-func add() error {
-	return fmt.Errorf("test error")
-}
-
-func test() error {
-	err := add()
-	return errors.Wrap(err, "call test")
-}
+import "fmt"
 
 func main() {
-	if err := test(); err != nil {
-		fmt.Println(err)
+	a, b := 3, 5
+
+	if 3 == a || b == 4 {
+		if 3 == a && 4 == b {
+			fmt.Println(a, b)
+		}
+		fmt.Println("hhh")
 	}
 }
