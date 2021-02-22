@@ -54,6 +54,21 @@ func TestMax(t *testing.T) {
 func Test_Remove(t *testing.T) {
 	a := []int{3, 5, 7, 10, 13}
 
-	out:=Remove(a, 0)
+	out := Remove(a, 0)
 	fmt.Println(out)
+}
+
+func Test_Min(t *testing.T) {
+	out := Min()
+	require.Equal(t, -1, out)
+
+	a := 3
+	b := 4
+	c := 2
+
+	out = Min(a, b)
+	require.Equal(t, 3, out)
+
+	out = Min(a, b, c)
+	require.Equal(t, 2, out)
 }

@@ -4,8 +4,8 @@ import "math"
 
 var minimum = math.MaxInt16
 
-//	a := []byte("mu")
-//	b := []byte("mc")
+// a := []byte("mitcmu")
+// b := []byte("mtacnu")
 // levenshteinDistance get the levenshtein distance
 func levenshteinDistance(a, b []byte, i, j, distance int) {
 	lena := len(a)
@@ -24,7 +24,7 @@ func levenshteinDistance(a, b []byte, i, j, distance int) {
 		}
 		return
 	}
-
+	
 	if a[i] == b[j] {
 		levenshteinDistance(a, b, i+1, j+1, distance)
 	} else {

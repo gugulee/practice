@@ -67,7 +67,7 @@ func GetMinIdx(a []int) int {
 		return -1
 	}
 
-	for i := minIdx+1; i < length; i++ {
+	for i := minIdx + 1; i < length; i++ {
 		// neglect the negative
 		if a[i] < 0 {
 			continue
@@ -82,17 +82,25 @@ func GetMinIdx(a []int) int {
 }
 
 // Min get the minimum
-func Min(x, y int) int {
-    if x < y {
-        return x
-    }
-    return y
+func Min(a ...int) int {
+	if 0 == len(a) {
+		return -1
+	}
+
+	min := a[0]
+
+	for i := 1; i < len(a); i++ {
+		if a[i] < min {
+			min = a[i]
+		}
+	}
+	return min
 }
 
 // Max get the maximum
 func Max(x, y int) int {
-    if x < y {
-        return y
-    }
-    return x
+	if x < y {
+		return y
+	}
+	return x
 }
