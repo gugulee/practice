@@ -11,6 +11,6 @@ func Test_levenshteinDistance(t *testing.T) {
 	// b := []byte("mu")
 	a := []byte("mitcmu")
 	b := []byte("mtacnu")
-	out := levenshteinDistance(a, b, 0, 0)
+	out := levenshteinDistance(a, b)
 	require.Equal(t, 3, out)
 }

@@ -98,9 +98,16 @@ func Min(a ...int) int {
 }
 
 // Max get the maximum
-func Max(x, y int) int {
-	if x < y {
-		return y
+func Max(a ...int) int {
+	if 0 == len(a) {
+		return -1
 	}
-	return x
+	max := a[0]
+
+	for i := 1; i < len(a); i++ {
+		if a[i] > max {
+			max = a[i]
+		}
+	}
+	return max
 }

@@ -18,7 +18,7 @@ c	3	2	2	2	3	4
 m	4	3	3	3	3	4
 u	5	4	4	4	4	3
 */
-func levenshteinDistance(a, b []byte, i, j int) (distance int) {
+func levenshteinDistance(a, b []byte) (distance int) {
 	lena := len(a)
 	lenb := len(b)
 	states := make([][]int, lena)
@@ -42,7 +42,7 @@ func levenshteinDistance(a, b []byte, i, j int) (distance int) {
 
 	// fill the states[i][0]
 	for i := 1; i < lena; i++ {
-		if b[0] == a[j] {
+		if b[0] == a[i] {
 			states[i][0] = i
 		} else {
 			states[i][0] = states[i-1][0] + 1

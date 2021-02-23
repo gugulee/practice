@@ -44,11 +44,18 @@ func TestMapDeepCopy(t *testing.T) {
 }
 
 func TestMax(t *testing.T) {
+	out := Max()
+	require.Equal(t, -1, out)
+
 	a := 3
 	b := 4
+	c := 6
 
-	out := Max(a, b)
-	require.Equal(t, b, out)
+	out = Max(a, b)
+	require.Equal(t, 4, out)
+
+	out = Max(a, b, c)
+	require.Equal(t, 6, out)
 }
 
 func Test_Remove(t *testing.T) {
