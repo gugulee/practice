@@ -1,13 +1,13 @@
 package main
 
 import (
-	_ "embed"
 	"fmt"
 )
 
-//go:embed README.md
-var t string
-
 func main() {
-	fmt.Println(t)
+	a := []int{1, 2, 3}
+	fmt.Printf("1%p \n", a)
+	a = append(a, 231)
+	fmt.Printf("1%p \n", a)
+	fmt.Println(a)
 }

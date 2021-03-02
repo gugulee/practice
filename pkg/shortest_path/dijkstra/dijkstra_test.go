@@ -72,5 +72,5 @@ func TestDijkstra(t *testing.T) {
 	//	fmt.Println()
 	//}
 
-	Dijkstra(node, 0)
+	dijkstra(node, 0)
 }

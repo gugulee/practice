@@ -22,7 +22,7 @@ func minInSlice(s []int, visit set.Set) int {
 	return index
 }
 
-func Dijkstra(node [][]int, s int) {
+func dijkstra(node [][]int, s int) {
 	nodeNum := len(node)
 	mw := make([]int, nodeNum)
 	for i := 0; i < nodeNum; i++ {

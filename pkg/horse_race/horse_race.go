@@ -38,15 +38,23 @@ func permutate(horses []string, result []string) {
 	}
 
 	for i, horse := range horses {
-		var newResult []string
-		newResult = append(newResult, result...) // copy result
-		newResult = append(newResult, horse)
-
 		var restHorses []string
 		restHorses = append(restHorses, horses[0:i]...)
 		restHorses = append(restHorses, horses[i+1:]...)
 
-		permutate(restHorses, newResult)
+		permutate(restHorses, append(result, horse))
 	}
+
+	// for i, horse := range horses {
+	// 	var newResult []string
+	// 	newResult = append(newResult, result...) // copy result
+	// 	newResult = append(newResult, horse)
+
+	// 	var restHorses []string
+	// 	restHorses = append(restHorses, horses[0:i]...)
+	// 	restHorses = append(restHorses, horses[i+1:]...)
+
+	// 	permutate(restHorses, newResult)
+	// }
 
 }
