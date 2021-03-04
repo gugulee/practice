@@ -2,30 +2,13 @@ package dijkstra
 
 import (
 	"fmt"
-	set "github.com/deckarep/golang-set"
 	"math"
 )
 
-func minInSlice(s []int, visit set.Set) int {
-	min := math.MaxInt64
-	index := -1
-	for i := 0; i < len(s); i++ {
-		if visit.Contains(i) {
-			continue
-		}
-
-		if s[i] < min {
-			min = s[i]
-			index = i
-		}
-	}
-	return index
-}
-
-func dijkstra(node [][]int, s int) {
-	nodeNum := len(node)
-	mw := make([]int, nodeNum)
-	for i := 0; i < nodeNum; i++ {
+func dijkstra(node [][]int, s, t int) {
+	lenNode := len(node)
+	mw := make([]int, lenNode)
+	for i := 0; i < lenNode; i++ {
 		if i == s {
 			mw[s] = 0
 			continue
@@ -33,24 +16,43 @@ func dijkstra(node [][]int, s int) {
 		mw[i] = math.MaxInt32
 	}
 
-	visit := set.NewSet()
-
-	for {
-		min := minInSlice(mw, visit)
-		if -1 == min {
-			break
-		}
-		visit.Add(min)
-
-		for j := 0; j < nodeNum; j++ {
-			temp := mw[min] + node[min][j]
-			if temp < mw[j] {
-				mw[j] = temp
+	inqueue := make([]bool, lenNode)
+	prev := make([]int, lenNode)
+	queue := NewPriorityQueue(lenNode)
+	queue.add(s, 0)
+	inqueue[s] = true
+	for !queue.IsEmpty() {
+		cur := queue.pull()
+		for i := range node[cur.id] {
+			if 0 == node[cur.id][i] || i == cur.id {
+				continue
+			}
+			tmp := mw[cur.id] + node[cur.id][i]
+			if tmp < mw[i] {
+				mw[i] = tmp
+				prev[i] = cur.id
+				if inqueue[i] {
+					queue.update(i, mw[i])
+				} else { 
+					queue.add(i, mw[i])
+					inqueue[i] = true
+				}
 			}
 		}
 	}
 
-	for i := 0; i < nodeNum; i++ {
-		fmt.Printf("mw[%d] = %d\n", i, mw[i])
+	fmt.Println(mw)
+	fmt.Printf("the path from %d to %d is: ", s, t)
+	printPath(prev, s, t)
+	fmt.Println()
+	fmt.Println("the shortest path is:", mw[t])
+}
+
+func printPath(prev []int, s, t int) {
+	if s == t {
+		fmt.Print(s)
+		return
 	}
+	printPath(prev, s, prev[t])
+	fmt.Print("->", t)
 }

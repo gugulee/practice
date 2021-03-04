@@ -1,7 +1,7 @@
 package mergesmallfile
 
 import (
-	"github.com/practice/pkg/sort/array/heap"
+	"github.com/practice/pkg/heap"
 	"github.com/practice/pkg/tools"
 )
 

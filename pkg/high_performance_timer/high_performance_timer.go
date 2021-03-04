@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/practice/pkg/sort/array/heap"
+	"github.com/practice/pkg/heap"
 )
 
 // HighPerformanceTimer is a high performance timer

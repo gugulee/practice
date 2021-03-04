@@ -1,6 +1,6 @@
 package topk
 
-import "github.com/practice/pkg/sort/array/heap"
+import "github.com/practice/pkg/heap"
 
 // topkInStatic get the top k in data
 func topKOfStaticData(data []int, k int) []int {
