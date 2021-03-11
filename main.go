@@ -2,12 +2,12 @@ package main
 
 import (
 	"fmt"
+	"unsafe"
 )
 
 func main() {
-	a := []int{1, 2, 3}
-	fmt.Printf("1%p \n", a)
-	a = append(a, 231)
-	fmt.Printf("1%p \n", a)
-	fmt.Println(a)
+	a := true
+	var b int32
+	fmt.Println(unsafe.Sizeof(a))
+	fmt.Println(unsafe.Sizeof(b))
 }

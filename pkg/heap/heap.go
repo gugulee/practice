@@ -146,6 +146,17 @@ func (h *MinHeap) RemoveMaxOrMin() {
 	MinHeapify(h.data, h.used, 1)
 }
 
+// Contains return true if the heap contains value
+func (h *MinHeap) Contains(value int) bool {
+	for i := 1; i <= h.used; i++ {
+		if value == h.data[i] {
+			return true
+		}
+	}
+
+	return false
+}
+
 // Min return the minimum
 func (h *MinHeap) Min() int {
 	if h.IsEmpty() {
