@@ -26,6 +26,7 @@ type Rectangle struct {
 
 func (r Rectangle) accept(v Visitor) {
     v(r)
+
 }
 
 func JsonVisitor(shape Shape) {
