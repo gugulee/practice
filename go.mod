@@ -4,7 +4,7 @@ go 1.16
 
 require (
 	github.com/deckarep/golang-set v1.7.1
-	github.com/gin-gonic/gin v1.6.3
+	github.com/gin-gonic/gin v1.7.0
 	github.com/golang/protobuf v1.4.1 // indirect
 	github.com/kr/pretty v0.1.0 // indirect
 	github.com/onsi/ginkgo v1.11.0
