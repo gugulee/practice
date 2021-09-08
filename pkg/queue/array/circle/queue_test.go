@@ -8,7 +8,7 @@ import (
 
 func TestQueue(t *testing.T) {
 
-	t.Run("the length of queue is 3, only 3 element in queue", func(t *testing.T) {
+	t.Run("the length of queue is 3, only 2 element in queue", func(t *testing.T) {
 		q := New(3)
 		q.Enqueue("a")
 		q.Enqueue("b")
