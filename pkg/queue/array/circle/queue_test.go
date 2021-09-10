@@ -6,8 +6,86 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestQueue(t *testing.T) {
+func Test_Head(t *testing.T) {
+	t.Run("queue is not empty", func(t *testing.T) {
+		q := New(3)
+		q.Enqueue("a")
+		q.Enqueue("b")
+		require.Equal(t, "a", q.Head())
+	})
 
+	t.Run("queue is empty", func(t *testing.T) {
+		q := New(3)
+		require.Equal(t, nil, q.Head())
+	})
+}
+
+func Test_HasNext(t *testing.T) {
+	q := New(3)
+	q.Enqueue("a")
+	q.Enqueue("b")
+	require.True(t, q.HasNext())
+
+	q.head = (q.head + 1) % q.capacity
+	require.True(t, q.HasNext())
+
+	q.head = (q.head + 1) % q.capacity
+	require.False(t, q.HasNext())
+
+	q.Dequeue()
+	q.Enqueue("c")
+	require.True(t, q.HasNext())
+
+	q.head = (q.head + 1) % q.capacity
+	require.False(t, q.HasNext())
+}
+
+func Test_Iterator(t *testing.T) {
+	/* test iterator workflow*/
+	t.Run("queue has not been rewinded", func(t *testing.T) {
+		q := New(3)
+		q.Enqueue("a")
+		q.Enqueue("b")
+
+		require.Equal(t, 0, q.head)
+		require.Equal(t, 2, q.tail)
+
+		for q.HasNext() {
+			head := q.Head()
+			cur := q.Dequeue()
+			require.Equal(t, head, cur)
+		}
+	})
+
+	t.Run("queue has been rewind", func(t *testing.T) {
+		q := New(3)
+		q.Enqueue("a")
+		q.Enqueue("b")
+		q.Dequeue()
+		q.Enqueue("c")
+
+		require.Equal(t, 1, q.head)
+		require.Equal(t, 0, q.tail)
+
+		for q.HasNext() {
+			head := q.Head()
+			cur := q.Dequeue()
+			require.Equal(t, head, cur)
+		}
+	})
+
+	t.Run("queue is empty", func(t *testing.T) {
+		q := New(3)
+
+		require.Equal(t, 0, q.head)
+		require.Equal(t, 0, q.tail)
+		require.False(t, q.HasNext())
+	})
+
+
+}
+
+func TestQueue(t *testing.T) {
 	t.Run("the length of queue is 3, only 2 element in queue", func(t *testing.T) {
 		q := New(3)
 		q.Enqueue("a")

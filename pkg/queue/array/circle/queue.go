@@ -74,3 +74,13 @@ func (q *Queue) Print() []interface{} {
 
 	return out
 }
+
+// HasNext returns whether another next element exists.
+func (q *Queue) HasNext() bool {
+	return !q.IsEmpty()
+}
+
+// Head returns the head of the queue
+func (q *Queue) Head() interface{} {
+	return q.data[q.head]
+}
