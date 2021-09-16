@@ -1,10 +1,10 @@
-configs:
+rules:
 - appId: app-1
   limits:
   - path: /v1/user
-    limit: 100
+    limit: 20
   - path: /v1/order
-    limit: 50
+    limit: 5
 - appId: app-2
   limits:
   - path: /v1/user

@@ -10,20 +10,20 @@ import (
 )
 
 type Interface interface {
-	Parse(configFilePath string) (*Rules, error)
+	Parse(configFilePath string) (*Config, error)
 }
 
 var _ Interface = &Parser{}
 
 type Parser struct {
-	doParse func(rawContent []byte) (*Rules, error)
+	doParse func(rawContent []byte) (*Config, error)
 }
 
 func NewParse() *Parser {
 	return &Parser{}
 }
 
-func (p *Parser) Parse(configFilePath string) (*Rules, error) {
+func (p *Parser) Parse(configFilePath string) (*Config, error) {
 	rawContent, err := readFile(configFilePath)
 	if nil != err {
 		return nil, fmt.Errorf("Parse: %s", err)
@@ -47,8 +47,8 @@ func NewParseJson() *ParseJson {
 	return pj
 }
 
-func (pj *ParseJson) doParseImpl(rawContent []byte) (*Rules, error) {
-	config := Rules{}
+func (pj *ParseJson) doParseImpl(rawContent []byte) (*Config, error) {
+	config := Config{}
 	if err := json.Unmarshal(rawContent, &config); nil != err {
 		return nil, fmt.Errorf("Parse: %s", err)
 	}
@@ -66,8 +66,8 @@ func NewParseYaml() *ParseYaml {
 	return py
 }
 
-func (py *ParseYaml) doParseImpl(rawContent []byte) (*Rules, error) {
-	config := Rules{}
+func (py *ParseYaml) doParseImpl(rawContent []byte) (*Config, error) {
+	config := Config{}
 	if err := yaml.Unmarshal(rawContent, &config); nil != err {
 		return nil, fmt.Errorf("Parse: %s", err)
 	}

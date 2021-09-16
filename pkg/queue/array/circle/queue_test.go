@@ -80,6 +80,12 @@ func Test_Iterator(t *testing.T) {
 		require.Equal(t, 0, q.head)
 		require.Equal(t, 0, q.tail)
 		require.False(t, q.HasNext())
+
+		q.Enqueue("a")
+		q.Enqueue("b")
+		q.Dequeue()
+		q.Dequeue()
+		require.False(t, q.HasNext())
 	})
 
 

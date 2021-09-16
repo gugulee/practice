@@ -2,9 +2,7 @@ package config
 
 import "fmt"
 
-type Format string
-
-func NewConfigParser(fromat string) (Interface, error) {
+func New(fromat string) (Interface, error) {
 	if 0 == len(fromat) {
 		return nil, fmt.Errorf("NewConfigParser: format must be one of [yaml,json]")
 	}

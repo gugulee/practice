@@ -1,5 +1,5 @@
 {
-    "configs": [
+    "rules": [
         {
             "appId": "app-1",
             "limits": [

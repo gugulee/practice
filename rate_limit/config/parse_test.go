@@ -6,11 +6,11 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-var mockConfig = &Rules{
-	Config: []Config{
+var mockConfig = &Config{
+	Rules: []Rule{
 		{
 			AppId: "app-1",
-			Limits: []Limit{
+			Limits: []*Limit{
 				{
 					Path:      "/v1/user",
 					Limit:     100,
@@ -25,7 +25,7 @@ var mockConfig = &Rules{
 		},
 		{
 			AppId: "app-2",
-			Limits: []Limit{
+			Limits: []*Limit{
 				{
 					Path:      "/v1/user",
 					Limit:     50,

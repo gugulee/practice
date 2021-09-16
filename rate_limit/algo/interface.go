@@ -1,5 +1,5 @@
 package algo
 
 type Interface interface {
-	Limit()
+	Limit() bool
 }

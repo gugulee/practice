@@ -4,16 +4,16 @@ import (
 	"encoding/json"
 )
 
-type Rules struct {
-	Config []Config `json:"configs" yaml:"configs"`
+type Config struct {
+	Rules []Rule `json:"rules" yaml:"rules"`
 }
 
-type Config struct {
+type Rule struct {
 	// the app identify
 	AppId string `json:"appId" yaml:"appId"`
 
 	// the limit for an api interface
-	Limits []Limit `json:"limits" yaml:"limits"`
+	Limits []*Limit `json:"limits" yaml:"limits"`
 }
 
 type Limit struct {
