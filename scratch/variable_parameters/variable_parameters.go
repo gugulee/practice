@@ -1,6 +1,4 @@
-package main
-
-import "fmt"
+package variableparameters
 
 type Config struct {
 	id      int
@@ -36,9 +34,4 @@ func NewOptions(options ...Options) *Config {
 	}
 
 	return config
-}
-
-func main() {
-	options := NewOptions(WithIdOption(10),WithNameOption("lee"),WithaddressOption("cq"))
-	fmt.Println(options)
 }
