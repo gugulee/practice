@@ -1,3 +1,4 @@
+package pretest
 // package main
 
 // import (
