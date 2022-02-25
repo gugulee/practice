@@ -36,7 +36,7 @@ func Test_encodeIndex(t *testing.T) {
 }
 
 func Test_decodeIndex(t *testing.T) {
-	data, err := ioutil.ReadFile("/tmp/1")
+	data, err := ioutil.ReadFile("/tmp/2")
 	if nil != err {
 		t.Fatalf("%s", err)
 	}

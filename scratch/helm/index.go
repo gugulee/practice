@@ -36,7 +36,7 @@ func decodeIndex(data []byte) error {
 	if err != nil {
 		return fmt.Errorf("11: %s", err)
 	}
-
+	ioutil.WriteFile("/tmp/1", data, 0644)
 	index := &repo.IndexFile{}
 	if err := json.Unmarshal(data, index); err != nil {
 		return fmt.Errorf("2: %s", err)
