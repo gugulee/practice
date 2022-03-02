@@ -127,6 +127,16 @@ func TestInOrder(t *testing.T) {
 
 	sort.Ints(data)
 	requires.Equal(data, bst.InOrder())
+
+	data1 := []int{5, 3, 6, 2, 4, 1}
+	bst1 := New()
+
+	for _, d := range data1 {
+		bst1.Insert(d)
+	}
+
+	sort.Ints(data1)
+	requires.Equal(data1, bst1.InOrder())
 }
 
 func TestHeight(t *testing.T) {
