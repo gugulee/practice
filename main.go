@@ -1,9 +1,9 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func main() {
-	fmt.Println(0 >> 2)
+	a := []int{1, 2, 3, 4}
+	a = append(a[:1], a[2])
+	fmt.Println(a)
 }
