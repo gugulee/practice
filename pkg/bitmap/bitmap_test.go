@@ -48,8 +48,8 @@ func Test_Get(t *testing.T) {
 		b.Set(i)
 	}
 
-	require.Equal(t,uint64(0xFFFFFFFFFFFFFFFF),b.data[0])
-	require.Equal(t,uint64(3),b.data[1])
+	require.Equal(t, uint64(0xFFFFFFFFFFFFFFFF), b.data[0])
+	require.Equal(t, uint64(3), b.data[1])
 
 	for i := 0; i < 66; i++ {
 		require.Equal(t, true, b.Get(i))

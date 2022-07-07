@@ -21,7 +21,7 @@ func (b *Browser) Forward(page string) string {
 	// it means to open new page if page is not empty
 	if 0 != len(page) {
 		// if backward stack is not empty, flush backward
-		if ! b.backward.IsEmpty() {
+		if !b.backward.IsEmpty() {
 			b.backward.Flush()
 		}
 

@@ -5,6 +5,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 )
+
 func TestSort(t *testing.T) {
 	r := require.New(t)
 

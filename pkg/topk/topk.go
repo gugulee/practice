@@ -22,6 +22,6 @@ func topKOfStaticData(data []int, k int) []int {
 			minHeap.Insert(data[i])
 		}
 	}
-	
+
 	return minHeap.Slice()
 }

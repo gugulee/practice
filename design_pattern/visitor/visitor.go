@@ -1,46 +1,46 @@
 package visitor
 
 import (
-    "encoding/json"
-    "encoding/xml"
-    "fmt"
+	"encoding/json"
+	"encoding/xml"
+	"fmt"
 )
 
 type Visitor func(shape Shape)
 
 type Shape interface {
-    accept(Visitor)
+	accept(Visitor)
 }
 
 type Circle struct {
-    Radius int
+	Radius int
 }
 
 func (c Circle) accept(v Visitor) {
-    v(c)
+	v(c)
 }
 
 type Rectangle struct {
-    Width, Heigh int
+	Width, Heigh int
 }
 
 func (r Rectangle) accept(v Visitor) {
-    v(r)
+	v(r)
 
 }
 
 func JsonVisitor(shape Shape) {
-    bytes, err := json.Marshal(shape)
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println(string(bytes))
+	bytes, err := json.Marshal(shape)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(string(bytes))
 }
 
 func XmlVisitor(shape Shape) {
-    bytes, err := xml.Marshal(shape)
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println(string(bytes))
+	bytes, err := xml.Marshal(shape)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(string(bytes))
 }

@@ -38,7 +38,7 @@ func (q *Queue) Enqueue(value interface{}) {
 		if 0 == q.head {
 			return
 		}
-		
+
 		// migrate data
 		for i := q.head; i < q.tail; i++ {
 			q.data[i-q.head] = q.data[i]

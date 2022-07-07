@@ -12,13 +12,13 @@ var mockConfig = &Config{
 			AppId: "app-1",
 			Limits: []*Limit{
 				{
-					Path:      "/v1/user",
-					Limit:     100,
+					Path:     "/v1/user",
+					Limit:    100,
 					Interval: 1,
 				},
 				{
-					Path:      "/v1/order",
-					Limit:     50,
+					Path:     "/v1/order",
+					Limit:    50,
 					Interval: 1,
 				},
 			},
@@ -27,13 +27,13 @@ var mockConfig = &Config{
 			AppId: "app-2",
 			Limits: []*Limit{
 				{
-					Path:      "/v1/user",
-					Limit:     50,
+					Path:     "/v1/user",
+					Limit:    50,
 					Interval: 1,
 				},
 				{
-					Path:      "/v1/order",
-					Limit:     50,
+					Path:     "/v1/order",
+					Limit:    50,
 					Interval: 1,
 				},
 			},

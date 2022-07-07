@@ -24,6 +24,3 @@ func (i *idGenerator) GetId() uint64 {
 func (i *idGenerator) Clear() {
 	atomic.StoreUint64(&i.id, 0)
 }
-
-
-

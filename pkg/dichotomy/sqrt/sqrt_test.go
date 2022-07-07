@@ -10,10 +10,10 @@ const (
 func TestAchieveSqrt(t *testing.T) {
 	var source float64 = 2
 	out := AchieveSqrt(source, deltaThreshold, maxTry)
-	t.Logf("in=%f,out=%f", source,out)
+	t.Logf("in=%f,out=%f", source, out)
 
-	source  = 99.191293
+	source = 99.191293
 	out = AchieveSqrt(source, deltaThreshold, maxTry)
-	t.Logf("in=%f,out=%f", source,out)
+	t.Logf("in=%f,out=%f", source, out)
 
 }

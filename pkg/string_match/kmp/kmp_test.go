@@ -13,7 +13,6 @@ func Test_kmp1(t *testing.T) {
 	require.True(t, out)
 }
 
-
 func Test_kmp(t *testing.T) {
 	in := "ababaeababacdb"
 	p := "ababacd"

@@ -49,7 +49,6 @@ func TestRadixSort(t *testing.T) {
 	tools.FuncTime1(func() { radixSort1(in1) }, "radix1 sort")
 	tools.FuncTime1(func() { radixSort2(in2) }, "radix2 sort")
 
-
 	// require.Equal(t, standard, in)
 	require.Equal(t, standard, in1)
 	// require.Equal(t, standard, in2)

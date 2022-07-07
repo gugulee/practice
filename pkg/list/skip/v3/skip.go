@@ -151,7 +151,7 @@ func (s *Skip) SearchRange(start, end vs.Value) (r []vs.Value) {
 	return r
 }
 
-// SearchRank search the skip list, 
+// SearchRank search the skip list,
 // return value(there are offsetEnd-offsetStart+1 nodes between begin+offsetStart and begin+offsetStart+offsetEnd),
 // no same node in the skip list when offsetStart == 0
 func (s *Skip) SearchRank(begin vs.Value, offsetStart, offsetEnd int) (r []vs.Value) {
@@ -165,7 +165,7 @@ func (s *Skip) SearchRank(begin vs.Value, offsetStart, offsetEnd int) (r []vs.Va
 	}
 
 	// move forward by 'start' nodes
-	for nil != p.next[0] && offsetStart >0{
+	for nil != p.next[0] && offsetStart > 0 {
 		p = p.next[0]
 		offsetStart--
 	}

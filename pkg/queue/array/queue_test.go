@@ -68,13 +68,12 @@ func TestQueue(t *testing.T) {
 		require.Equal(t, []interface{}{"c", "d", "e", "f"}, q.Print())
 		require.Equal(t, 0, q.head)
 
-		
 		q.Enqueue("g")
-		require.Equal(t, []interface{}{"c", "d", "e", "f","g"}, q.Print())
+		require.Equal(t, []interface{}{"c", "d", "e", "f", "g"}, q.Print())
 		require.Equal(t, 0, q.head)
 
 		q.Enqueue("h")
-		require.Equal(t, []interface{}{"c", "d", "e", "f","g"}, q.Print())
+		require.Equal(t, []interface{}{"c", "d", "e", "f", "g"}, q.Print())
 		require.Equal(t, 0, q.head)
 	})
 }

@@ -69,25 +69,25 @@ func Test_check(t *testing.T) {
 	t.Run("the relation is ok", func(t *testing.T) {
 		relations := generateTestData()
 		color := make([]int, 5)
-		
-		color[0]=1
-		color[1]=2
-		color[2]=3
-		color[3]=3
-		color[4]=1
-	
+
+		color[0] = 1
+		color[1] = 2
+		color[2] = 3
+		color[3] = 3
+		color[4] = 1
+
 		out = check(relations, color, 0)
 		require.True(t, out)
-	
+
 		out = check(relations, color, 1)
 		require.True(t, out)
-	
+
 		out = check(relations, color, 2)
 		require.True(t, out)
-	
+
 		out = check(relations, color, 3)
 		require.True(t, out)
-	
+
 		out = check(relations, color, 4)
 		require.True(t, out)
 	})

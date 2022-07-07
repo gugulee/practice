@@ -7,7 +7,7 @@ import (
 
 func TestGetStrDistance(t *testing.T) {
 	out := getStrDistance("mouuse", "mouse")
-	fmt.Println("distance:",out)
+	fmt.Println("distance:", out)
 }
 
 func TestGetStrDistance1(t *testing.T) {

@@ -1,4 +1,5 @@
 package pretest
+
 // package main
 
 // import (
@@ -14,7 +15,7 @@ package pretest
 
 // // EtcdMutex is the lock of etcd
 // type EtcdMutex struct {
-// 	// TTL is the advisory time-to-live in seconds. 
+// 	// TTL is the advisory time-to-live in seconds.
 // 	TTL     int64
 
 // 	// the etcd client
@@ -24,7 +25,7 @@ package pretest
 // 	Key     string
 
 // 	// the function when unlock
-// 	cancel  context.CancelFunc 
+// 	cancel  context.CancelFunc
 // 	lease   clientv3.Lease
 // 	leaseID clientv3.LeaseID
 // 	txn     clientv3.Txn

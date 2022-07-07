@@ -88,7 +88,6 @@ func Test_Iterator(t *testing.T) {
 		require.False(t, q.HasNext())
 	})
 
-
 }
 
 func TestQueue(t *testing.T) {

@@ -109,13 +109,12 @@ func isOK(in [][]int, row, column int) bool {
 // 	return true
 // }
 
-
 func printQueues(in [][]int) {
 	for row := 0; row < 8; row++ {
 		for column := 0; column < 8; column++ {
-			if in[row][column]==1{
+			if in[row][column] == 1 {
 				fmt.Print("Q ")
-			}else{
+			} else {
 				fmt.Print("* ")
 			}
 		}

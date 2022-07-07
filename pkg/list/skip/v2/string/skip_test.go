@@ -146,6 +146,6 @@ func TestDelete(t *testing.T) {
 	s.Delete("4")
 	actual = s.Search("4")
 	require.Nil(t, actual)
-	
+
 	require.True(t, s.IsEmpty())
 }

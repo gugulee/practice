@@ -112,7 +112,7 @@ func TestSearchListByValue(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		if ! strings.Contains(strs, test.sep) {
+		if !strings.Contains(strs, test.sep) {
 			continue
 		}
 		node := l.SearchListByValue(test.sep)

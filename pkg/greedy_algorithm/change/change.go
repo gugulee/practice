@@ -23,10 +23,10 @@ func change(total int) string {
 		for ; j < moneyNumber[value[i]] && total >= value[i]; j++ {
 			total -= value[i]
 		}
-		
+
 		if 0 != j {
 			r = append(r, fmt.Sprintf("%d * %d", value[i], j))
 		}
 	}
-	return strings.Join(r," + ")
+	return strings.Join(r, " + ")
 }

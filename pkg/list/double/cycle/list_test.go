@@ -90,7 +90,7 @@ func TestSearchListByValue(t *testing.T) {
 	for _, test := range tests {
 
 		node := l.SearchListByValue(test.sep)
-		if ! strings.Contains(strs, test.sep) {
+		if !strings.Contains(strs, test.sep) {
 			require.Nilf(t, node, "LIST: %q, %q should not be found", strs, test.sep)
 			continue
 		}

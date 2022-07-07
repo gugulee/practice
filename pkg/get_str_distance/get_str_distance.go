@@ -53,8 +53,8 @@ func getStrDistance1(a, b string, aLen, bLen int) int {
 		r = 1
 	}
 
-	aInsert := getStrDistance1(a, b, aLen-1, bLen)+1
-	bInsert := getStrDistance1(a, b, aLen, bLen-1)+1
+	aInsert := getStrDistance1(a, b, aLen-1, bLen) + 1
+	bInsert := getStrDistance1(a, b, aLen, bLen-1) + 1
 	replace := getStrDistance1(a, b, aLen-1, bLen-1) + r
 
 	return min(min(aInsert, bInsert), replace)

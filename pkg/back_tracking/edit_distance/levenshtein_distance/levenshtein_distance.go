@@ -24,7 +24,7 @@ func levenshteinDistance(a, b []byte, i, j, distance int) {
 		}
 		return
 	}
-	
+
 	if a[i] == b[j] {
 		levenshteinDistance(a, b, i+1, j+1, distance)
 	} else {

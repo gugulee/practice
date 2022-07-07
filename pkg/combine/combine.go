@@ -16,4 +16,3 @@ func combine(origin, result []string, m int) {
 		combine(origin[i+1:], newResult, m-1)
 	}
 }
-

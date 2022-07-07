@@ -3,8 +3,8 @@ package bubble
 import (
 	"testing"
 
-	"github.com/stretchr/testify/require"
 	singlelist "github.com/practice/pkg/list/single"
+	"github.com/stretchr/testify/require"
 )
 
 func TestBubbleSort(t *testing.T) {

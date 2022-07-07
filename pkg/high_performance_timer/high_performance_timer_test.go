@@ -18,6 +18,6 @@ func generateTestData() (result map[int64]string) {
 
 func Test_highPerformanceTimer(t *testing.T) {
 	in := generateTestData()
-	h:=New(in)
+	h := New(in)
 	h.highPerformanceTimer()
 }

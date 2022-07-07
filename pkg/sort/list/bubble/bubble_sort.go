@@ -1,7 +1,6 @@
 package bubble
 
 import (
-
 	singlelist "github.com/practice/pkg/list/single"
 )
 

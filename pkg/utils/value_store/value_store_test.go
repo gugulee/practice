@@ -29,7 +29,7 @@ func Test_KV_Compare(t *testing.T) {
 
 func Test_KV_String(t *testing.T) {
 	var v1 Value = &KV{Key: 1, Value: 10}
-	require.Equal(t,"key: 1, value: 10",v1.String())
+	require.Equal(t, "key: 1, value: 10", v1.String())
 }
 
 func Test_Ivalue_Compare(t *testing.T) {
@@ -49,8 +49,7 @@ func Test_Ivalue_Compare(t *testing.T) {
 	require.Equal(t, -1, v5.Compare(v1))
 }
 
-
 func Test_Ivalue_String(t *testing.T) {
 	var v1 Value = &Ivalue{10}
-	require.Equal(t,"10",v1.String())
+	require.Equal(t, "10", v1.String())
 }

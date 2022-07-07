@@ -23,7 +23,7 @@ func IsPalindrome1(l *single.LinkList) bool {
 		return false
 	}
 
-	for ; node != nil; {
+	for node != nil {
 		slice = append(slice, node.Value().(string))
 		node = node.Next()
 	}

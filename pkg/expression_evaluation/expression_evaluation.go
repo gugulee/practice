@@ -61,7 +61,7 @@ func ExpressionEvaluation(expression string) (int, error) {
 		}
 	}
 
-	for ! operator.IsEmpty() {
+	for !operator.IsEmpty() {
 		numeric.Push(calculate(numeric.Pop().(int), numeric.Pop().(int), operator.Pop().(string)))
 	}
 

@@ -139,7 +139,7 @@ func TestBsearch5(t *testing.T) {
 	a = []int{20, 20, 30}
 	out = bsearch5(a, 1)
 	assert.Equal(t, 0, out)
-	
+
 	a = []int{5, 20, 30}
 	out = bsearch5(a, 5)
 	assert.Equal(t, 1, out)

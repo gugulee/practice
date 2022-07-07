@@ -38,11 +38,11 @@ func Test_RateLimit(t *testing.T) {
 func setupServer(ratelimiter *RateLimiter) *gin.Engine {
 	r := gin.Default()
 
-	app:="app-1"
-	path:="/v1/user"
+	app := "app-1"
+	path := "/v1/user"
 	r.GET(path, ratelimite(pingEndpoint, ratelimiter, app, path))
 
-	path="/v1/order"
+	path = "/v1/order"
 	r.GET(path, ratelimite(pingEndpoint, ratelimiter, app, path))
 
 	return r

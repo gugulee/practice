@@ -33,7 +33,7 @@ func dijkstra(node [][]int, s, t int) {
 				prev[i] = cur.id
 				if inqueue[i] {
 					queue.update(i, mw[i])
-				} else { 
+				} else {
 					queue.add(i, mw[i])
 					inqueue[i] = true
 				}
