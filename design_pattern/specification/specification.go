@@ -1,4 +1,4 @@
-package main
+package specification
 
 import (
 	"fmt"
@@ -73,16 +73,4 @@ func (kv aclRuleKv) Rule() (string, error) {
 
 	// like '12345 <= tcp.dst <= 12500'
 	return fmt.Sprintf("%s %s %s %s %s", kv.value, kv.effect, kv.key, kv.effect, kv.maxValue), nil
-}
-
-func main() {
-	rule := NewAndSpecification(
-		NewKV("ip4.src", "==", "$test.allow.as", ""),
-		NewKV("ip4.src", "!=", "$test.except.as", ""),
-		NewKV("tcp.dst", "<=", "12345", "12500"),
-		NewKV("outport", "==", "@ovn.sg.test_sg", ""),
-		NewKV("ip", "", "", ""),
-	)
-
-	fmt.Println(rule.Rule())
 }
