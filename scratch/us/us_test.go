@@ -1,23 +1,21 @@
 package us
 
 import (
-	"log"
-	"os"
+	"fmt"
 	"testing"
 )
 
-func TestMain(m *testing.M) {
-    log.Println("Do stuff BEFORE the tests!")
-    exitVal := m.Run()
-    log.Println("Do stuff AFTER the tests!")
+func Test_test(t *testing.T) {
+	numbers := []int{1, 2, 3, 4, 5}
+	var funcs []func()
 
-    os.Exit(exitVal)
-}
+	for _, num := range numbers {
+		funcs = append(funcs, func() {
+			fmt.Println(num * num)
+		})
+	}
 
-func TestA(t *testing.T) {
-    log.Println("TestA running")
-}
-
-func TestB(t *testing.T) {
-    log.Println("TestB running")
+	for _, f := range funcs {
+		f()
+	}
 }

@@ -2,72 +2,43 @@ package main
 
 import (
 	"fmt"
-	"log"
-	"sort"
 
-	cmdv1 "ecs/pkg/kubevirt/handler-launcher-com/cmd/v1"
-
-	info "github.com/google/cadvisor/info/v1"
-	"github.com/google/cadvisor/utils/sysfs"
-	"github.com/google/cadvisor/utils/sysinfo"
+	"gitlab.com/nvidia/cloud-native/go-nvlib/pkg/nvpci"
 )
 
-// getNodeCpuTopology get cpu topology on node
-func getNodeCpuTopology(getNodesInfo func() ([]info.Node, error)) (*cmdv1.Topology, error) {
-	nodes, err := getNodesInfo()
-	if err != nil {
-		return nil, fmt.Errorf("get node cpu info: %v", err)
-	}
+func getBARsMaxAddressableMemory() (uint64, uint64) {
 
-	topology := &cmdv1.Topology{
-		NumaCells: make([]*cmdv1.Cell, 0, len(nodes)),
-	}
+	pci := nvpci.New()
+	devs, _ := pci.GetAllDevices()
 
-	for _, node := range nodes {
-		cell := &cmdv1.Cell{
-			Id: uint32(node.Id),
+	// Since we do not know which devices are going to be hotplugged,
+	// we're going to use the GPU with the biggest BARs to initialize the
+	// root port, this should work for all other devices as well.
+	// defaults are 2MB for both, if no suitable devices found
+	max32bit := uint64(2 * 1024 * 1024)
+	max64bit := uint64(2 * 1024 * 1024)
+
+	for _, dev := range devs {
+		if !dev.IsGPU() {
+			continue
 		}
-
-		for _, core := range node.Cores {
-			siblings := []uint32{}
-			sort.Ints(core.Threads) // keep threads increasing order
-
-			for _, thread := range core.Threads {
-				siblings = append(siblings, uint32(thread))
-			}
-
-			for _, thread := range core.Threads {
-				cell.Cpus = append(cell.Cpus, &cmdv1.CPU{
-					Id:       uint32(thread),
-					Siblings: siblings,
-				})
-			}
+		memSize32bit, memSize64bit := dev.Resources.GetTotalAddressableMemory(true)
+		if max32bit < memSize32bit {
+			max32bit = memSize32bit
 		}
-
-		topology.NumaCells = append(topology.NumaCells, cell)
+		if max64bit < memSize64bit {
+			max64bit = memSize64bit
+		}
 	}
-
-	return topology, nil
+	// The actual 32bit is most of the time a power of 2 but we need some
+	// buffer so double that to leave space for other IO functions.
+	// The 64bit size is not a power of 2 and hence is already rounded up
+	// to the higher value.
+	return max32bit * 2, max64bit
 }
 
 func main() {
-	topology, err := getNodeCpuTopology(func() ([]info.Node, error) {
-		nodeInfo, _, err := sysinfo.GetNodesInfo(sysfs.NewRealSysFs())
-		if err != nil {
-			return nil, fmt.Errorf("get node cpu info: %v", err)
-		}
-		return nodeInfo, nil
-	})
-
-	if err != nil {
-		log.Fatalf("get node cpu info: %v", err)
-	}
-
-	for _, cell := range topology.NumaCells {
-		fmt.Printf("cell id is %d\n", cell.Id)
-		for _, cpu := range cell.Cpus {
-			fmt.Printf("%d %v\n", cpu.Id, cpu.Siblings)
-		}
-	}
-
+	memSize32bit, memSize64bit := getBARsMaxAddressableMemory()
+	fmt.Println(memSize32bit)
+	fmt.Println(memSize64bit)
 }
