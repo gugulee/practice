@@ -1,16 +1,15 @@
-package main
+package sshkey
 
 import (
 	"crypto/rand"
 	"crypto/rsa"
 	"crypto/x509"
 	"encoding/pem"
-	"fmt"
 
 	"golang.org/x/crypto/ssh"
 )
 
-func foo() {
+func generateKeyPair() (string, string, string) {
 	// Generate a new RSA key pair with a key size of 2048 bits
 	privateKey, err := rsa.GenerateKey(rand.Reader, 2048)
 	if err != nil {
@@ -29,18 +28,9 @@ func foo() {
 		panic(err)
 	}
 
-	// Print the public key in OpenSSH authorized keys format
-	fmt.Println(string(ssh.MarshalAuthorizedKey(publicKey)))
-
-	// Print the private key
-	fmt.Println(string(privateKeyBytes))
-
 	// Calculate the fingerprint of the public key
 	// This is equivalent to running `ssh-keygen -lf <public key file>` in the command line
 	fingerprint := ssh.FingerprintLegacyMD5(publicKey)
-	fmt.Printf("Fingerprint: %s\n", fingerprint)
-}
 
-func main() {
-	foo()
+	return string(privateKeyBytes), string(ssh.MarshalAuthorizedKey(publicKey)), fingerprint
 }
