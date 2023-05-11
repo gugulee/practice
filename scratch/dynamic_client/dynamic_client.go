@@ -6,25 +6,33 @@ import (
 	"strings"
 
 	appsv1 "k8s.io/api/apps/v1"
+	"k8s.io/apimachinery/pkg/api/meta"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/client-go/dynamic"
+	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/clientcmd"
 )
 
 type foo struct {
 	dynamicClient *dynamic.DynamicClient
+	kubeClient    *kubernetes.Clientset
 }
 
 func New(configFile string) (*foo, error) {
 	// Create a new Kubernetes API client
 	config, err := clientcmd.BuildConfigFromFlags("", configFile)
-
 	if err != nil {
 		return nil, err
 	}
+
+	kubeClient, err := kubernetes.NewForConfig(config)
+	if err != nil {
+		return nil, err
+	}
+
 	client, err := dynamic.NewForConfig(config)
 	if err != nil {
 		return nil, err
@@ -32,6 +40,7 @@ func New(configFile string) (*foo, error) {
 
 	return &foo{
 		dynamicClient: client,
+		kubeClient:    kubeClient,
 	}, nil
 }
 
@@ -84,7 +93,7 @@ func (f *foo) Update(obj interface{}) error {
 	}
 
 	gvk := typeMeta.GroupVersionKind()
-	gvr := kindToResource(gvk.GroupVersion(), gvk.Kind)
+	gvr := kindToResource(gvk)
 
 	data, err := runtime.DefaultUnstructuredConverter.ToUnstructured(obj)
 	if err != nil {
@@ -99,7 +108,36 @@ func (f *foo) Update(obj interface{}) error {
 	return nil
 }
 
-func kindToResource(gv schema.GroupVersion, kind string) schema.GroupVersionResource {
+func (f *foo) Create(obj interface{}) error {
+	objectMeta, err := meta.Accessor(obj)
+	if err != nil {
+		return fmt.Errorf("obj has no ObjectMeta: %v", err)
+	}
+
+	typeMeta, ok := obj.(schema.ObjectKind)
+	if !ok {
+		return fmt.Errorf("obj has no TypeMeta")
+	}
+
+	gvk := typeMeta.GroupVersionKind()
+	gvr := kindToResource(gvk)
+
+	data, err := runtime.DefaultUnstructuredConverter.ToUnstructured(obj)
+	if err != nil {
+		return err
+	}
+
+	_, err = f.dynamicClient.Resource(gvr).Namespace(objectMeta.GetNamespace()).Create(context.TODO(), &unstructured.Unstructured{Object: data}, metav1.CreateOptions{})
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func kindToResource(gvk schema.GroupVersionKind) schema.GroupVersionResource {
+	gv := gvk.GroupVersion()
+	kind := gvk.Kind
 	resource := gv.WithResource(strings.ToLower(kind) + "s")
 	return resource
 }

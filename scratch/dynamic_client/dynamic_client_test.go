@@ -1,7 +1,9 @@
 package dynamicclient
 
 import (
+	"encoding/json"
 	"fmt"
+	"os"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -75,5 +77,23 @@ func TestUpdate(t *testing.T) {
 	deploy.Spec.Replicas = &replicas
 
 	err = f.Update(deploy)
+	require.NoError(t, err)
+}
+
+func TestCreate(t *testing.T) {
+	t.Parallel()
+
+	f, err := New("/root/.kube/config")
+	require.NoError(t, err)
+
+	data, err := os.ReadFile("/tmp/deploy.json")
+	require.NoError(t, err)
+
+	deploy := &appsv1.Deployment{}
+
+	err = json.Unmarshal(data, deploy)
+	require.NoError(t, err)
+
+	err = f.Create(deploy)
 	require.NoError(t, err)
 }
