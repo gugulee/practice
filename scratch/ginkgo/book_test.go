@@ -10,7 +10,7 @@ var _ = Describe("some JSON decoding edge cases", func() {
 	JustBeforeEach(func() {
 		_ = json
 	})
-	When("the JSON fails to parse",Label("json test"), func() {
+	When("the JSON fails to parse", Label("json test"), func() {
 		BeforeEach(func() {
 			json = "abc"
 		})
@@ -30,4 +30,3 @@ var _ = Describe("some JSON decoding edge cases", func() {
 		})
 	})
 })
-

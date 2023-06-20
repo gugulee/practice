@@ -2,6 +2,27 @@ package string
 
 import "testing"
 
+func TestIsPlalindrome(t *testing.T) {
+	tests := []struct {
+		sep  string
+		want bool
+	}{
+		{"a", true},
+		{"hello", false},
+		{"abccba", true},
+		{"abcdcba", true},
+	}
+	if IsPlalindrome("") != false {
+		t.Errorf(`isPlalindrome(" ")=false`)
+	}
+
+	for _, test := range tests {
+		if IsPlalindrome(test.sep) != test.want {
+			t.Errorf(`isPlalindrome("%s")=false`, test.sep)
+		}
+	}
+}
+
 func TestIsPlalindrome1(t *testing.T) {
 	tests := []struct {
 		sep  string

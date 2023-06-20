@@ -1,7 +1,7 @@
 package regex
 
-// 	text := "baac"
-//	p := "ba?c"
+// text := "baac"
+// p := "ba?c"
 var match = false
 
 func rmatch(ti, pj int, p, text string) {

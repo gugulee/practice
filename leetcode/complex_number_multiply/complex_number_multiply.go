@@ -2,8 +2,9 @@ package cnm
 
 import "fmt"
 
-// 	num1 := "a+bi"
+//	num1 := "a+bi"
 //	num2 := "c+di"
+//
 // (a+bi) *(c+di)
 func complexNumberMultiply(num1 string, num2 string) string {
 	var a, b, c, d int

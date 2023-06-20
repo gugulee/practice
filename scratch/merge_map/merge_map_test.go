@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func Test_Merge(t *testing.T){
+func Test_Merge(t *testing.T) {
 	base, err := os.ReadFile("/tmp/base.json")
 	if err != nil {
 		panic(err)

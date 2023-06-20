@@ -14,7 +14,7 @@ func merge(dst, src map[string]interface{}, depth int) map[string]interface{} {
 	if depth > MaxDepth {
 		panic("too deep!")
 	}
-	
+
 	for key, srcVal := range src {
 		if dstVal, ok := dst[key]; ok {
 			srcMap, srcMapOk := mapify(srcVal)

@@ -15,12 +15,12 @@ type LinkList struct {
 	len  uint32
 }
 
-//创建新node
+// 创建新node
 func NewNode(value interface{}) *ListNode {
 	return &ListNode{value: value}
 }
 
-//创建链表头
+// 创建链表头
 func NewLinkList() *LinkList {
 	return &LinkList{NewNode(nil), 0}
 }
@@ -37,7 +37,7 @@ func (n *ListNode) Value() interface{} {
 	return n.value
 }
 
-//在链表尾部插入新节点
+// 在链表尾部插入新节点
 func (l *LinkList) InsertTail(value string) {
 	node := l.head
 	for nil != node.Next {
@@ -46,13 +46,13 @@ func (l *LinkList) InsertTail(value string) {
 	l.InsertAfter(node, value)
 }
 
-//在链表头后面插入新节点
+// 在链表头后面插入新节点
 func (l *LinkList) InsertHead(value string) {
 	node := l.head
 	l.InsertAfter(node, value)
 }
 
-//在node后面插入新节点
+// 在node后面插入新节点
 func (l *LinkList) InsertAfter(node *ListNode, value string) {
 	newNode := NewNode(value)
 
@@ -68,7 +68,7 @@ func (l *LinkList) InsertAfter(node *ListNode, value string) {
 	l.len++
 }
 
-//判断node是否在链表中，存在返回true，否则返回false
+// 判断node是否在链表中，存在返回true，否则返回false
 func (l *LinkList) SearchListByNode(target *ListNode) bool {
 	if nil == target {
 		return false
@@ -82,7 +82,7 @@ func (l *LinkList) SearchListByNode(target *ListNode) bool {
 	return false
 }
 
-//根据value查找是否存在链表中，返回该node，否则返回nil
+// 根据value查找是否存在链表中，返回该node，否则返回nil
 func (l *LinkList) SearchListByValue(value string) *ListNode {
 	next := l.head.Next
 	for ; next != nil; next = next.Next {

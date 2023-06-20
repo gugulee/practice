@@ -42,7 +42,7 @@ func findTheNearest(in [][]float64) ([]float64, []float64, float64) {
 	return nearestDistance(in)
 }
 
-// 	in := [][]float64{
+//	in := [][]float64{
 //		{1, 3},
 //		{4, 10},
 //		{5, 6},

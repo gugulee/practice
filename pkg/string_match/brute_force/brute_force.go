@@ -26,7 +26,7 @@ func bfSearch(main, sub string) bool {
 	return false
 }
 
-//BF search pattern
+// BF search pattern
 func bfSearch1(main string, pattern string) bool {
 	//defensive
 	if len(main) == 0 || len(pattern) == 0 || len(main) < len(pattern) {
@@ -72,11 +72,14 @@ func bfSearchMatrixString(main, pattern [][]string) bool {
 
 // truncate truncate the string from a,
 // e.g., a=
+//
 //	{"d", "a", "b", "c", "d"},
 //	{"e", "f", "a", "d", "g"},
 //	{"c", "c", "a", "f", "h"},
 //	{"d", "e", "f", "c", "i"},
+//
 // if rowStart=0, rowEnd=1, columnStart=0, columnEnd =2, result=
+//
 //	{"d", "a", "b"},
 //	{"e", "f", "a"},
 func truncate(a [][]string, rowStart, rowEnd, columnStart, columnEnd int) (result [][]string) {
