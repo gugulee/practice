@@ -33,3 +33,29 @@ func quickSort(original []int, start, end int) {
 	quickSort(original, start, p-1)
 	quickSort(original, p+1, end)
 }
+
+func quickSortReview(original []int, start, end int) {
+	if end <= start {
+		return
+	}
+
+	p := partitionReview(original, start, end)
+	quickSortReview(original, start, p-1)
+	quickSortReview(original, p+1, end)
+}
+
+func partitionReview(a []int, start, end int) int {
+	piovt := a[end]
+
+	i := start
+	for j := start; j < end; j++ {
+		if a[j] < piovt {
+			a[i], a[j] = a[j], a[i]
+			i++
+		}
+	}
+
+	a[i], a[end] = a[end], a[i]
+
+	return i
+}

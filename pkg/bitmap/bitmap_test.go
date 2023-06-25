@@ -1,7 +1,6 @@
 package bitmap
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -29,7 +28,6 @@ func Test_Set(t *testing.T) {
 	b.Set(5)
 	require.Equal(t, uint64(32), b.data[0])
 	b.Clean(5)
-	fmt.Println(b.data[0])
 
 	b.Set(62)
 	require.Equal(t, uint64(0x4000000000000000), b.data[0])
@@ -39,7 +37,7 @@ func Test_Set(t *testing.T) {
 	require.Equal(t, uint64(0x8000000000000000), b.data[0])
 
 	b.Set(100)
-	require.Equal(t, int64(0x1000000000), b.data[1])
+	require.Equal(t, uint64(0x1000000000), b.data[1])
 }
 
 func Test_Get(t *testing.T) {

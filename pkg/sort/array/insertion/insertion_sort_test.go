@@ -11,3 +11,9 @@ func TestInsertionSort(t *testing.T) {
 	insertionSort(in)
 	require.Equal(t, []int{1, 2, 3, 4, 5, 6}, in)
 }
+
+func Test_insertionSortReview(t *testing.T) {
+	in := []int{4, 5, 6, 1, 3, 2}
+	insertionSortReview(in)
+	require.Equal(t, []int{1, 2, 3, 4, 5, 6}, in)
+}

@@ -145,3 +145,41 @@ func MergeSort1(original []int, start, end int) {
 	MergeSort1(original, mid+1, end)
 	merge1(original, start, mid, end)
 }
+
+func MergeSortReview(original []int, start, end int) {
+	if end == start {
+		return
+	}
+
+	mid := (start + end) / 2
+	MergeSortReview(original, start, mid)
+	MergeSortReview(original, mid+1, end)
+	mergeReview(original, start, mid, end)
+}
+
+func mergeReview(a []int, start, mid, end int) {
+	left := a[start : mid+1]
+	right := a[mid+1 : end+1]
+
+	result := make([]int, 0, end-start+1)
+	for {
+		if len(left) == 0 {
+			result = append(result, right...)
+			break
+		}
+
+		if len(right) == 0 {
+			result = append(result, left...)
+		}
+
+		if left[0] <= right[0] {
+			result = append(result, left[0])
+			left = left[1:]
+		} else {
+			result = append(result, right[0])
+			right = right[1:]
+		}
+	}
+
+	copy(a[start:end+1], result)
+}

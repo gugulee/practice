@@ -109,3 +109,21 @@ func TestMergeSort1(t *testing.T) {
 	MergeSort1(in, 0, len(in)-1)
 	assert.Equal(t, []int{1, 2, 3, 5, 7, 8, 9, 11}, in)
 }
+
+func TestMergeSortReview(t *testing.T) {
+	in := []int{}
+	MergeSortReview(in, -1, len(in)-1)
+	assert.Equal(t, []int{}, in)
+
+	in = []int{7}
+	MergeSortReview(in, 0, len(in)-1)
+	assert.Equal(t, []int{7}, in)
+
+	in = []int{2, 4, 1, 6}
+	MergeSortReview(in, 0, len(in)-1)
+	assert.Equal(t, []int{1, 2, 4, 6}, in)
+
+	in = []int{11, 8, 3, 9, 7, 1, 2, 5}
+	MergeSort1(in, 0, len(in)-1)
+	assert.Equal(t, []int{1, 2, 3, 5, 7, 8, 9, 11}, in)
+}

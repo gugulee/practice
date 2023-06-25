@@ -11,3 +11,9 @@ func TestBubbleSort(t *testing.T) {
 	bubbleSort(in)
 	require.Equal(t, []int{1, 2, 3, 4, 5, 6, 7}, in)
 }
+
+func Test_bubbleSortReview(t *testing.T) {
+	in := []int{6, 4, 1, 5, 2, 7, 3}
+	bubbleSortReview(in)
+	require.Equal(t, []int{1, 2, 3, 4, 5, 6, 7}, in)
+}
