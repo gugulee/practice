@@ -15,5 +15,4 @@ func TestAchieveSqrt(t *testing.T) {
 	source = 99.191293
 	out = AchieveSqrt(source, deltaThreshold, maxTry)
 	t.Logf("in=%f,out=%f", source, out)
-
 }
