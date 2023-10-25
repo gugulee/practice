@@ -11,7 +11,7 @@ require (
 	github.com/onsi/ginkgo/v2 v2.10.0
 	github.com/onsi/gomega v1.27.8
 	github.com/stretchr/testify v1.8.4
-	golang.org/x/crypto v0.9.0
+	golang.org/x/crypto v0.12.0
 	gopkg.in/yaml.v2 v2.4.0
 	hci-controller v0.0.0-00010101000000-000000000000
 	k8s.io/api v0.27.2
@@ -20,6 +20,7 @@ require (
 )
 
 require (
+	github.com/Luzifer/go-openssl/v4 v4.2.1
 	github.com/agiledragon/gomonkey v2.0.2+incompatible
 	github.com/bytedance/sonic v1.9.1 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20221115062448-fe3a3abad311 // indirect
@@ -55,8 +56,8 @@ require (
 	github.com/ugorji/go/codec v1.2.11 // indirect
 	golang.org/x/arch v0.3.0 // indirect
 	golang.org/x/net v0.10.0 // indirect
-	golang.org/x/sys v0.8.0 // indirect
-	golang.org/x/text v0.9.0 // indirect
+	golang.org/x/sys v0.11.0 // indirect
+	golang.org/x/text v0.12.0 // indirect
 	golang.org/x/tools v0.9.3 // indirect
 	google.golang.org/protobuf v1.30.0 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
