@@ -9,13 +9,12 @@ import (
 )
 
 func TestCompute(t *testing.T) {
-	var c *Computer
-	patches := gomonkey.ApplyMethod(reflect.TypeOf(c), "NetworkCompute", func(_ *Computer, a, b int) (int, error) {
+	patches := gomonkey.ApplyMethod(reflect.TypeOf(&Computer{}), "NetworkCompute", func(_ *Computer, a, b int) (int, error) {
 		return 10, nil
 	})
-
+	
 	defer patches.Reset()
-
+	
 	cp := &Computer{}
 	sum, err := cp.Compute(1, 1)
 	require.NoError(t, err)
