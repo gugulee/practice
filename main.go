@@ -3,9 +3,11 @@ package main
 import "fmt"
 
 func main() {
-	cond := map[string]interface{}{"id": "aa"}
-	fmt.Println(cond)
-	
-	cond = map[string]interface{}{"ccc": "xxx"}
-	fmt.Println(cond)
+	var routes []int
+
+	fmt.Printf("%p\n", routes)
+
+	routes = make([]int, 0, 10)
+
+	fmt.Printf("%p\n", routes)
 }

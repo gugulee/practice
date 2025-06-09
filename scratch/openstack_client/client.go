@@ -1,14 +1,14 @@
 package main
 
 import (
-        "fmt"
-        "log"
-        "os"
+	"fmt"
+	"log"
+	"os"
 
-        "github.com/gophercloud/gophercloud"
-        "github.com/gophercloud/gophercloud/openstack"
-        "github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/layer3/routers"
-        "github.com/gophercloud/gophercloud/openstack/networking/v2/ports"
+	"github.com/gophercloud/gophercloud"
+	"github.com/gophercloud/gophercloud/openstack"
+	"github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/layer3/routers"
+	"github.com/gophercloud/gophercloud/openstack/networking/v2/ports"
 )
 
 func main() {
