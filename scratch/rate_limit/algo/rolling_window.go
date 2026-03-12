@@ -3,7 +3,7 @@ package algo
 import (
 	"time"
 
-	circlequeue "github.com/practice/pkg/queue/array/circle"
+	circlequeue "github.com/practice/algo/queue/array/circle"
 	"github.com/practice/rate_limit/config"
 )
 

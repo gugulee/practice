@@ -3,7 +3,7 @@ package longestcommonprefix
 import (
 	"strings"
 
-	"github.com/practice/pkg/tools"
+	"github.com/practice/algo/tools"
 )
 
 func longestCommonPrefix(strs []string) string {
