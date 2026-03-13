@@ -3,7 +3,7 @@ package translation
 import (
 	"testing"
 
-	"github.com/practice/pkg/heap"
+	"github.com/practice/algo/heap"
 	"github.com/stretchr/testify/require"
 )
 

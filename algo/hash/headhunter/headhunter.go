@@ -3,9 +3,9 @@ package headhunter
 import (
 	"fmt"
 
-	"github.com/practice/pkg/constants"
-	skipv3 "github.com/practice/pkg/list/skip/v3"
-	valuestore "github.com/practice/pkg/utils/value_store"
+	"github.com/practice/algo/constants"
+	skipv3 "github.com/practice/algo/list/skip/v3"
+	valuestore "github.com/practice/algo/utils/value_store"
 )
 
 const (

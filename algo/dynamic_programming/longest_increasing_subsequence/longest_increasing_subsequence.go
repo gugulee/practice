@@ -3,7 +3,7 @@ package lis
 import (
 	"fmt"
 
-	"github.com/practice/pkg/tools"
+	"github.com/practice/algo/tools"
 )
 
 /*

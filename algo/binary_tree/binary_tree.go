@@ -4,7 +4,7 @@ import (
 	"strings"
 
 	set "github.com/deckarep/golang-set"
-	"github.com/practice/pkg/tools"
+	"github.com/practice/algo/tools"
 )
 
 // Node is the node of the binary tree

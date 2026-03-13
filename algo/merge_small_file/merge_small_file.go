@@ -1,8 +1,8 @@
 package mergesmallfile
 
 import (
-	"github.com/practice/pkg/heap"
-	"github.com/practice/pkg/tools"
+	"github.com/practice/algo/heap"
+	"github.com/practice/algo/tools"
 )
 
 // mergeSmallFile merge small file into large file

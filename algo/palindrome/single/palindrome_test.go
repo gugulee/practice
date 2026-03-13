@@ -3,7 +3,7 @@ package single
 import (
 	"testing"
 
-	"github.com/practice/pkg/list/single"
+	"github.com/practice/algo/list/single"
 )
 
 func TestIsPlalindrome1(t *testing.T) {

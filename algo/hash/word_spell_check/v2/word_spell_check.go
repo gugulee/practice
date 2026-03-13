@@ -3,7 +3,7 @@ package v2
 import (
 	"math"
 
-	skipstring "github.com/practice/pkg/list/skip/v2/string"
+	skipstring "github.com/practice/algo/list/skip/v2/string"
 )
 
 const (

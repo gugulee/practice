@@ -2,10 +2,11 @@ package friend
 
 import (
 	"fmt"
-	set "github.com/deckarep/golang-set"
-	"github.com/practice/pkg/tools"
 	"strconv"
 	"strings"
+
+	set "github.com/deckarep/golang-set"
+	"github.com/practice/algo/tools"
 )
 
 // Node ...

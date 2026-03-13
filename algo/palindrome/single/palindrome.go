@@ -3,8 +3,8 @@ package single
 import (
 	"strings"
 
-	"github.com/practice/pkg/list/single"
-	plalindrome "github.com/practice/pkg/palindrome/string"
+	"github.com/practice/algo/list/single"
+	plalindrome "github.com/practice/algo/palindrome/string"
 )
 
 /*

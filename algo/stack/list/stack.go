@@ -1,6 +1,6 @@
 package list
 
-import "github.com/practice/pkg/list/single"
+import "github.com/practice/algo/list/single"
 
 type Stack struct {
 	data *single.LinkList

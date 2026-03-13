@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/practice/pkg/tools"
+	"github.com/practice/algo/tools"
 )
 
 const (

@@ -1,7 +1,7 @@
 package findduplicate
 
 import (
-	"github.com/practice/pkg/sort/array/merge"
+	"github.com/practice/algo/sort/array/merge"
 )
 
 // FindScopeDuplicate find ths duplicate digital if the digital is continuous

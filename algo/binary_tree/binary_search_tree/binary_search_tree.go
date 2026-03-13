@@ -1,7 +1,7 @@
 package binarysearchtree
 
 import (
-	"github.com/practice/pkg/constants"
+	"github.com/practice/algo/constants"
 )
 
 // Node is the node of the binary tree

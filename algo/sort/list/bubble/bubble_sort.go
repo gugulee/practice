@@ -1,7 +1,7 @@
 package bubble
 
 import (
-	singlelist "github.com/practice/pkg/list/single"
+	singlelist "github.com/practice/algo/list/single"
 )
 
 func bubbleSort(original *singlelist.LinkList) {

@@ -6,8 +6,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/practice/pkg/constants"
-	"github.com/practice/pkg/tools"
+	"github.com/practice/algo/constants"
+	"github.com/practice/algo/tools"
 )
 
 const (

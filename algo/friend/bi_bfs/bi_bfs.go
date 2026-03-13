@@ -2,9 +2,10 @@ package bi_bfs
 
 import (
 	"fmt"
-	set "github.com/deckarep/golang-set"
-	"github.com/practice/pkg/tools"
 	"strconv"
+
+	set "github.com/deckarep/golang-set"
+	"github.com/practice/algo/tools"
 )
 
 type Node struct {

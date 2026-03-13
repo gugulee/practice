@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/practice/pkg/constants"
-	vs "github.com/practice/pkg/utils/value_store"
+	"github.com/practice/algo/constants"
+	vs "github.com/practice/algo/utils/value_store"
 	"github.com/stretchr/testify/require"
 )
 

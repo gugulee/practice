@@ -1,7 +1,7 @@
 package heap
 
 import (
-	"github.com/practice/pkg/heap"
+	"github.com/practice/algo/heap"
 )
 
 // Sort is the heap sort

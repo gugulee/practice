@@ -1,7 +1,7 @@
 package translation
 
 import (
-	"github.com/practice/pkg/heap"
+	"github.com/practice/algo/heap"
 )
 
 var minHeap *heap.MinHeap

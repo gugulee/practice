@@ -3,7 +3,7 @@ package bubble
 import (
 	"testing"
 
-	singlelist "github.com/practice/pkg/list/single"
+	singlelist "github.com/practice/algo/list/single"
 	"github.com/stretchr/testify/require"
 )
 

@@ -1,7 +1,7 @@
 package bucket
 
 import (
-	"github.com/practice/pkg/sort/array/quick"
+	"github.com/practice/algo/sort/array/quick"
 )
 
 func getMax(a []int) int {

@@ -1,6 +1,6 @@
 package list
 
-import "github.com/practice/pkg/list/single"
+import "github.com/practice/algo/list/single"
 
 // Queue is queue of list
 // the tail of the queue is the head of the list

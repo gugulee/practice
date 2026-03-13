@@ -6,8 +6,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/practice/pkg/sort/array/quick"
-	"github.com/practice/pkg/tools"
+	"github.com/practice/algo/sort/array/quick"
+	"github.com/practice/algo/tools"
 	"github.com/stretchr/testify/require"
 )
 

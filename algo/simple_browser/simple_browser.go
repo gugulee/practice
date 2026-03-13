@@ -1,6 +1,6 @@
 package simple_browser
 
-import arraystack "github.com/practice/pkg/stack/array"
+import arraystack "github.com/practice/algo/stack/array"
 
 type Browser struct {
 	// store the page which need forward

@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/practice/pkg/constants"
-	skip "github.com/practice/pkg/list/skip/v3"
-	vs "github.com/practice/pkg/utils/value_store"
+	"github.com/practice/algo/constants"
+	skip "github.com/practice/algo/list/skip/v3"
+	vs "github.com/practice/algo/utils/value_store"
 )
 
 const (

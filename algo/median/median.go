@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/practice/pkg/heap"
+	"github.com/practice/algo/heap"
 )
 
 // getMedianFromStatic get the median from the static data

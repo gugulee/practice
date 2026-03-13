@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"math"
 
-	"github.com/practice/pkg/tools"
+	"github.com/practice/algo/tools"
 )
 
 func minimumDistance(data [][]int, endRow, endColumn int) int {

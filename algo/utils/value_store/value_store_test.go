@@ -3,7 +3,7 @@ package valuestore
 import (
 	"testing"
 
-	"github.com/practice/pkg/constants"
+	"github.com/practice/algo/constants"
 	"github.com/stretchr/testify/require"
 )
 

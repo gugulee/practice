@@ -5,7 +5,7 @@ import (
 	"strings"
 	"text/scanner"
 
-	arraystack "github.com/practice/pkg/stack/array"
+	arraystack "github.com/practice/algo/stack/array"
 )
 
 // the priority of operator is "+" = "-" < "*" = "/"

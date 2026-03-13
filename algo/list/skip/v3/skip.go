@@ -6,8 +6,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/practice/pkg/tools"
-	vs "github.com/practice/pkg/utils/value_store"
+	"github.com/practice/algo/tools"
+	vs "github.com/practice/algo/utils/value_store"
 )
 
 const (

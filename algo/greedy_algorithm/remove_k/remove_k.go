@@ -1,6 +1,6 @@
 package removek
 
-import "github.com/practice/pkg/tools"
+import "github.com/practice/algo/tools"
 
 // removeK remove k digit from a
 func removeK(a string, k int) string {

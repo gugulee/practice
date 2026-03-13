@@ -3,7 +3,7 @@ package single
 import (
 	"fmt"
 
-	"github.com/practice/pkg/list/single"
+	"github.com/practice/algo/list/single"
 )
 
 type LruSingle struct {
