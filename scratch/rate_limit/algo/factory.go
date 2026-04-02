@@ -3,7 +3,7 @@ package algo
 import (
 	"fmt"
 
-	"github.com/practice/rate_limit/config"
+	"github.com/practice/scratch/rate_limit/config"
 )
 
 func New(algoType string, limit *config.Limit) (Interface, error) {

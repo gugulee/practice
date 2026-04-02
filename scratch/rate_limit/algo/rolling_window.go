@@ -4,7 +4,7 @@ import (
 	"time"
 
 	circlequeue "github.com/practice/algo/queue/array/circle"
-	"github.com/practice/rate_limit/config"
+	"github.com/practice/scratch/rate_limit/config"
 )
 
 var _ Interface = &RollingWindow{}

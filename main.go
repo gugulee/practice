@@ -1,7 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
+// 不要修改
 func main() {
-	fmt.Println("Hello, World!")
+	fmt.Println("hello, world!")
 }

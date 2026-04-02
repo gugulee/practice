@@ -3,8 +3,8 @@ package ratelimit
 import (
 	"fmt"
 
-	"github.com/practice/rate_limit/algo"
-	"github.com/practice/rate_limit/config"
+	"github.com/practice/scratch/rate_limit/algo"
+	"github.com/practice/scratch/rate_limit/config"
 )
 
 type RateLimiter struct {

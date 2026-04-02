@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/practice/rate_limit/config"
+	"github.com/practice/scratch/rate_limit/config"
 )
 
 func Test_NewConfigParser(t *testing.T) {
